@@ -22,6 +22,11 @@ html {
     font-size: 10px;
 }
 
+.hero p {
+    color: white;
+    font-size: 2.5rem;
+}
+
 body,
 h1, h2, h3, h4, h5, h6,
 p, a,
@@ -57,7 +62,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
 }
 
 

@@ -18,30 +18,19 @@ class Index extends React.Component {
         <main>
           <IndexHeadContainer>
             <Navigation />
-            <Hero>
-              <img src={config.siteLogo} width="150px" alt="" />
-              <h1>{config.siteTitle}</h1>
-              <h4>{config.siteDescription}</h4>
+            <Hero className="hero">
+              <img src={config.siteLogo} height="400px" alt="" />
+              <p>{config.siteDescription}</p>
             </Hero>
           </IndexHeadContainer>
           <BodyContainer>
-            <h2>A Gatsby Template for Content</h2>
+            <h2>JavaScript Data Synchronization</h2>
             <p>
-              Made for modern documentation sites. Table of Contents
-              automatically generated from markdown files.{' '}
+              Make a change in the browser and it is automatically sent to the server, saved to
+              the database, and shared with other users. Jinaga is journaled isolated nodes
+              approaching global agreement.
             </p>
-            <CtaButton to={'/lesson-one'}>See Your First Post</CtaButton>
-
-            <div className="contributors">
-              <p>
-                Created by Eric Windmill.{' '}
-                <a href="https:twitter.com/ericwindmill">
-                  You should follow him on Twitter.
-                </a>{' '}
-                Also, <a href="https://github.com/Levino">Levin Keller</a> for
-                making it better than I could{"'"}ve alone.
-              </p>
-            </div>
+            <CtaButton to={'/getting-started'}>Get Started</CtaButton>
           </BodyContainer>
         </main>
       </div>
