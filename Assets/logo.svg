@@ -77,7 +77,7 @@
      id="g4909"
      inkscape:groupmode="layer"
      inkscape:label="Background"
-     style="display:inline">
+     style="display:none">
     <rect
        y="71.984238"
        x="72.745827"
@@ -88,8 +88,8 @@
        inkscape:export-xdpi="191.39995"
        inkscape:export-ydpi="191.39995" />
     <rect
-       inkscape:export-ydpi="191.39995"
-       inkscape:export-xdpi="191.39995"
+       inkscape:export-ydpi="38.529999"
+       inkscape:export-xdpi="38.529999"
        style="opacity:1;fill:#393782;fill-opacity:0.00294985;stroke-width:0.08663537"
        id="rect4987"
        width="31.639593"
