@@ -50,9 +50,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568543"
-     inkscape:cx="439.15208"
-     inkscape:cy="762.83896"
+     inkscape:zoom="11.313709"
+     inkscape:cx="419.47119"
+     inkscape:cy="789.90213"
      inkscape:document-units="mm"
      inkscape:current-layer="g4909"
      showgrid="false"
@@ -79,19 +79,23 @@
      inkscape:label="Background"
      style="display:inline">
     <rect
-       y="67.883194"
-       x="54.489578"
-       height="108.64507"
-       width="117.79904"
-       id="rect4867"
-       style="opacity:1;fill:#5351bb;fill-opacity:1;stroke-width:0.30992997" />
-    <rect
-       y="67.883194"
-       x="54.489578"
-       height="108.64507"
-       width="117.79904"
+       y="71.984238"
+       x="72.745827"
+       height="53.082573"
+       width="86.975082"
        id="rect4823"
-       style="opacity:1;fill:#5351bb;fill-opacity:1;stroke-width:0.30992997" />
+       style="opacity:1;fill:#393782;fill-opacity:1;stroke-width:0.18614918"
+       inkscape:export-xdpi="191.39995"
+       inkscape:export-ydpi="191.39995" />
+    <rect
+       inkscape:export-ydpi="191.39995"
+       inkscape:export-xdpi="191.39995"
+       style="opacity:1;fill:#393782;fill-opacity:0.00294985;stroke-width:0.08663537"
+       id="rect4987"
+       width="31.639593"
+       height="31.607069"
+       x="99.97123"
+       y="74.369621" />
   </g>
   <g
      inkscape:label="Outline"
