@@ -6,7 +6,7 @@ class ctaButton extends Component {
   render() {
     const { children } = this.props
     return (
-      <Link style={{ border: 'none' }} to={this.props.to}>
+      <Link className="cta" style={{ border: 'none' }} to={this.props.to}>
         <ButtonContainer>{children}</ButtonContainer>
       </Link>
     )
