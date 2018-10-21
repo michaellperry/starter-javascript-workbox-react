@@ -8,6 +8,16 @@ module.exports = {
   pathPrefix: "/", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription: "A JavaScript framework for synchronizing data from browser to server and back.", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
+  siteFBAppID: "", // FB Application ID for using app insights
+  googleAnalyticsID: "", // GA tracking ID.
+  disqusShortname: "", // Disqus shortname.
+  postDefaultCategoryID: "Tech", // Default category for posts.
+  userName: "MichaelLPerry", // Username to display in the author segment.
+  userTwitter: "michaellperry", // Optionally renders "Follow Me" in the UserInfo segment.
+  userLocation: "Allen, TX", // User location to display in the author segment.
+  userAvatar: "http://qedcode.com/sites/default/files/Avatar_Small.jpg", // User avatar to display in the author segment.
+  userDescription: "Software Mathematician", // User description to display in the author segment.
+  // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
     {
       label: "GitHub",
