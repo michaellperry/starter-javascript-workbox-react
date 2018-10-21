@@ -50,9 +50,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313709"
-     inkscape:cx="419.47119"
-     inkscape:cy="789.90213"
+     inkscape:zoom="8"
+     inkscape:cx="437.15374"
+     inkscape:cy="750.89634"
      inkscape:document-units="mm"
      inkscape:current-layer="g4909"
      showgrid="false"
@@ -69,7 +69,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -88,14 +88,15 @@
        inkscape:export-xdpi="191.39995"
        inkscape:export-ydpi="191.39995" />
     <rect
-       inkscape:export-ydpi="38.529999"
-       inkscape:export-xdpi="38.529999"
-       style="opacity:1;fill:#393782;fill-opacity:0.00294985;stroke-width:0.08663537"
+       inkscape:export-ydpi="411.4523"
+       inkscape:export-xdpi="411.4523"
+       style="opacity:1;fill:#393782;fill-opacity:0.00294985;stroke-width:0.08657713"
        id="rect4987"
-       width="31.639593"
+       width="31.597078"
        height="31.607069"
        x="99.97123"
-       y="74.369621" />
+       y="74.369621"
+       inkscape:export-filename="C:\Projects\jinaga_com\static\logos\logo-512.png" />
   </g>
   <g
      inkscape:label="Outline"
