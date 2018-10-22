@@ -6,8 +6,6 @@ A Jinaga data model is made of **facts**.
 A fact is an immutable JavaScript object which has a `type` field.
 
 ```JavaScript
-var j = JinagaBrowser.create({});
-
 var alice = await j.fact({
     type: 'Player',
     name: 'Alice'
@@ -30,88 +28,58 @@ var game = await j.fact({
 });
 ```
 
-When using TypeScript, it is helpful to define classes to represent types of facts.
+Alice and Bob want to play some Tic-Tac-Toe.
+Let's make a few moves.
 
-```TypeScript
-export class Player {
-    static Type = 'Player';
-    type = Player.Type;
-
-    constructor(
-        public name: string
-    ) { }
-}
-
-export class Game {
-    static Type = 'Game';
-    type = Game.Type;
-
-    constructor(
-        public playerX: Player,
-        public playerO: Player,
-        public start = new Date()
-    ) { }
-}
-
-const alice = await j.fact(new Player('Alice'));
-const bob = await j.fact(new Player('Bob'));
-const game = await j.fact(new Game(alice, bob));
+```JavaScript
+await j.fact({
+    type: 'Move',
+    game: game,
+    player: alice,
+    index: 0,
+    square: 4
+}));
+await j.fact({
+    type: 'Move',
+    game: game,
+    player: bob,
+    index: 1,
+    square: 7
+}));
+await j.fact({
+    type: 'Move',
+    game: game,
+    player: alice,
+    index: 2,
+    square: 0
+}));
 ```
 
-Following this pattern, we can define the moves of a game.
+To find all moves in a game, first define a **template function**.
 
-```TypeScript
-export class Move {
-    static Type = 'Move';
-    type = Move.Type;
-
-    constructor(
-        public game: Game,
-        public player: Player,
-        public index: number,
-        public square: number
-    )
-}
-
-await j.fact(new Move(game, alice, 0, 4));
-await j.fact(new Move(game, bob,   1, 7));
-await j.fact(new Move(game, alice, 2, 0));
-await j.fact(new Move(game, bob,   3, 8));
-await j.fact(new Move(game, alice, 4, 6));
-await j.fact(new Move(game, bob,   5, 3));
-await j.fact(new Move(game, alice, 6, 2));
-```
-
-This type defines the game as a predecessor of a move.
-That means that a move is a **successor**.
-To find all of the successors of a fact, define a **template function**.
-
-```TypeScript
-export function movesInGame(g: Game) {
-    return j.match(<Move>{
-        type: Move.Type,
+```JavaScript
+function movesInGame(g) {
+    return j.match({
+        type: 'Move',
         game: g
     });
 }
-
-const moves = await j.query(game, j.for(movesInGame));
 ```
 
-Most times, however, you don't need to run the query just once.
-Instead, you need to respond every time a new result is added.
-Set up a function that will be called every time a move is made.
+Then **watch** the game to call a function every time a move is made.
 
-```TypeScript
-function moveMade(move: Move) {
+```JavaScript
+function moveMade(move) {
     // Update the view.
 }
 
 j.watch(game, j.for(movesInGame), moveMade);
 ```
 
-In any two player game, each player will want the browser to respond in real time when their opponent makes a move.
-To support this, **subscribe** to the moves.
-When one player makes a move in their browser, that fact will be pushed to the other player's browser.
+Now whenever you use `j.fact` to add a fact that matches the template, the function will be called.
+Wouldn't it be cool if that happened between browsers, too?
+What if Alice and Bob want to play a game in real time?
+Simple. Just **subscribe**.
 
 ```JavaScript
 j.subscribe(game, j.for(movesInGame));
