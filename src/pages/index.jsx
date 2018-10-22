@@ -20,7 +20,7 @@ class Index extends React.Component {
           <IndexHeadContainer>
             <Navigation />
             <Hero className="hero">
-              <img src={config.siteLogo} height="400px" alt="" />
+              <img src={config.siteLogo} alt="" />
               <p>{config.siteDescription}</p>
             </Hero>
           </IndexHeadContainer>
