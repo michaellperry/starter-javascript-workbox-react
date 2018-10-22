@@ -9,7 +9,8 @@ import Navigation from '../components/Layout/Navigation'
 
 class Index extends React.Component {
   render() {
-    const allSEOMarkdown = this.props.data.allMarkdown.edges
+    const allSEOMarkdown = this.props.data.allMarkdown.edges;
+    const html = this.props.data.content.html;
 
     return (
       <div className="index-container">
@@ -31,10 +32,14 @@ class Index extends React.Component {
               approaching global agreement.
             </p>
             <CtaButton to={'/getting-started'}>Get Started</CtaButton>
+            <div
+              className="page-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
           </BodyContainer>
         </main>
       </div>
-    )
+    );
   }
 }
 
@@ -67,6 +72,9 @@ const BodyContainer = styled.div`
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query IndexQuery {
+    content: markdownRemark(frontmatter: {title: {eq: "Quick Example"}}) {
+      html
+    }
     allMarkdown: allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
