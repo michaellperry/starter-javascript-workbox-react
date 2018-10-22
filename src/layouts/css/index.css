@@ -43,7 +43,7 @@ li, li > *, dt, dd {
 }
 
 pre, code {
-    font-family: 'Space Mono', monospace;
+    font-family: Consolas, 'Courier New', monospace;
 }
 
 h1 {font-size: 4rem;}
