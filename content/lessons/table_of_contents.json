@@ -6,6 +6,12 @@
       "entries": [
         {
           "entry": "./getting-started.md"
+        },
+        {
+          "entry": "./installing-prerequisites.md"
+        },
+        {
+          "entry": "./postgresql-setup.md"
         }
       ]
     }

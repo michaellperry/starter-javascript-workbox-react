@@ -11,6 +11,11 @@ export default class LessonTemplate extends React.Component {
   render() {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
+    if (!postNode) {
+      return (
+        <p>Failed to load lesson at {slug}.</p>
+      );
+    }
     const post = postNode.frontmatter
     if (!post.id) {
       post.id = slug
