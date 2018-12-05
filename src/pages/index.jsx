@@ -25,11 +25,12 @@ class Index extends React.Component {
             </Hero>
           </IndexHeadContainer>
           <BodyContainer>
-            <h2>JavaScript Data Synchronization</h2>
+            <h2>Exchange Immutable Facts</h2>
             <p>
-              Make a change in the browser and it is automatically sent to the server, saved to
-              the database, and shared with other users. Jinaga is journaled isolated nodes
-              approaching global agreement.
+              JSON objects are durably stored on the back end,
+              and reliably transmitted between browsers.
+              The view is automatically updated as new facts
+              arrive, even from other users.
             </p>
             <CtaButton to={'/getting-started'}>Get Started</CtaButton>
             <div

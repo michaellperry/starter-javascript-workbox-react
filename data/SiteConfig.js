@@ -6,7 +6,7 @@ module.exports = {
   siteLogo: "/logos/logo-400.png", // Logo used for SEO and manifest.
   siteUrl: "https://jinaga.com", // Domain of your website without pathPrefix.
   pathPrefix: "/", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
-  siteDescription: "A JavaScript framework for synchronizing data from browser to server and back.", // Website description used for RSS feeds/meta description tag.
+  siteDescription: "Resilient, reliable, and connected web applications.", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "", // FB Application ID for using app insights
   googleAnalyticsID: "", // GA tracking ID.
