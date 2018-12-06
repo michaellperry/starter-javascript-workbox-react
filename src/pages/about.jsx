@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import config from '../../data/SiteConfig'
 import MainHeader from '../components/Layout/Header'
-import About from '../components/About/About'
 
 const BodyContainer = styled.div`
   padding: ${props => props.theme.sitePadding};
@@ -11,6 +10,8 @@ const BodyContainer = styled.div`
 
 class AboutPage extends React.Component {
   render() {
+    const html = this.props.data.content.html;
+
     return (
       <div className="index-container">
         <Helmet title={config.siteTitle} />
@@ -22,7 +23,10 @@ class AboutPage extends React.Component {
             logo={config.siteLogo}
           />
           <BodyContainer>
-            <About />
+            <div
+              className="page-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
           </BodyContainer>
         </main>
       </div>
@@ -31,3 +35,12 @@ class AboutPage extends React.Component {
 }
 
 export default AboutPage
+
+
+export const pageQuery = graphql`
+  query AboutQuery {
+    content: markdownRemark(frontmatter: {title: {eq: "About Page"}}) {
+      html
+    }
+  }
+`
