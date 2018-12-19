@@ -4,40 +4,22 @@ import styled from 'styled-components'
 
 /* eslint react/no-array-index-key: "off" */
 
-const Links = ({ entries }) => (
-  <StyledLinkList>
-    {entries.map(({ entry }, key) => (
-      <EntryListItem key={key}>
-        <Link to={entry.childMarkdownRemark.fields.slug}>
-          <EntryTitle>{entry.childMarkdownRemark.frontmatter.title}</EntryTitle>
-        </Link>
-      </EntryListItem>
-    ))}
-  </StyledLinkList>
-)
-
-const ChapterList = ({ chapters, entries, title, level = 0 }) => (
+const ChapterList = ({ posts, level }) => (
   <StyledChapterList>
-    {title && (
-      <ChapterListItem key={`${title}${level}`}>
-        <ChapterTitle level={level}>{title}</ChapterTitle>
+    {posts.map((post, index) => (
+      <ChapterListItem key={index}>
+        <Link to={post.slug}><ChapterTitle level={level}>{post.title}</ChapterTitle></Link>
+        <ChapterList posts={post.children} level={level+1} />
       </ChapterListItem>
-    )}
-    <ChapterListItem>{entries && <Links entries={entries} />}</ChapterListItem>
-    <ChapterListItem>
-      {chapters &&
-        chapters.map((chapter, index) => (
-          <ChapterList {...chapter} level={level + 1} key={`${index}`} />
-        ))}
-    </ChapterListItem>
+    ))}
   </StyledChapterList>
-)
+);
 
-const TableOfContents = ({ chapters }) => (
+const TableOfContents = ({ posts }) => (
   <TOCWrapper>
-    {chapters.map((chapter, index) => <ChapterList {...chapter} key={index} />)}
+    <ChapterList posts={posts} level={0} />
   </TOCWrapper>
-)
+);
 
 export default TableOfContents
 
@@ -51,29 +33,8 @@ const StyledChapterList = styled.ol`
   margin: 0;
 `
 
-const StyledLinkList = styled.ol`
-  list-style: none;
-`
-
-const EntryTitle = styled.h6`
-  display: inline-block;
-  font-weight: 200;
-  color: black;
-  margin: 0;
-  line-height: 1.5;
-  border-bottom: 1px solid transparent;
-  text-decoration: none;
-`
-
 const ChapterListItem = styled.li`
   margin: 0;
-`
-
-const EntryListItem = styled.li`
-  margin: 0;
-  a:hover {
-    border-bottom: 1px solid black;
-  }
 `
 
 const ChapterTitle = styled.h5`

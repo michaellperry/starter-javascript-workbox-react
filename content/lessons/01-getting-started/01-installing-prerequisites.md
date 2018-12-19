@@ -1,5 +1,6 @@
 ---
 title: "Installing Prerequisites"
+type: book
 ---
 
 Jinaga requires [Node 8](https://nodejs.org) and [PostgreSQL 10](https://www.postgresql.org/).
