@@ -28,7 +28,9 @@ exports.createPages = ({ actions, graphql }) => {
             graphql(
             `
                 {
-                    allMarkdownRemark {
+                    allMarkdownRemark(filter: { 
+                        fields: { slug: { glob: "/documents/**" }}
+                      }) {
                         edges {
                             node {
                                 frontmatter {
