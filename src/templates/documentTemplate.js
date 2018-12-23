@@ -5,14 +5,14 @@ import SEO from "../components/seo";
 import Breadcrumb from "../outline/breadcrumb";
 import ChildLinks from "../outline/childLinks";
 import TableOfContents from "../outline/tableOfContents";
-import { findNode, toTree } from "../outline/tree";
+import { findNode, mapNodes, toTree } from "../outline/tree";
 
 export default function Template({ data }) {
   const { document, documents } = data;
   const { fields, frontmatter, html } = document;
   const { slug } = fields;
   const chapters = toTree(documents, "/documents");
-  const currentDocument = findNode(chapters, x => x.slug === slug);
+  const currentDocument = findDocumentBySlug(chapters, slug);
   return (
     <Layout className="document-container">
       <SEO title={document.frontmatter.title} keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
@@ -63,3 +63,12 @@ export const pageQuery = graphql`
     }
   }
 `
+
+function findDocumentBySlug(chapters, slug) {
+  const document = findNode(chapters, x => x.slug === slug);
+  if (!document) {
+    const allSlugs = mapNodes(chapters, x => x.slug).join('\n');
+    throw new Error(`Could not find document for slug ${slug}. Available slugs:\n${allSlugs}`);
+  }
+  return document;
+}

@@ -71,6 +71,17 @@ function getNodes(filesByFolder, foldersByParent, folder) {
     }];
 }
 
+export function mapNodes(nodes, selector) {
+    let mapping = [];
+    for (let index = 0; index < nodes.length; index++) {
+        const node = nodes[index];
+        mapping.concat([selector(node)]);
+        const children = mapNodes(node.children, selector);
+        mapping.concat(children);
+    }
+    return mapping;
+}
+
 export function findNode(nodes, predicate) {
     for (let index = 0; index < nodes.length; index++) {
         const node = nodes[index];
