@@ -1,0 +1,65 @@
+import { graphql } from "gatsby";
+import React from "react";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Breadcrumb from "../outline/breadcrumb";
+import ChildLinks from "../outline/childLinks";
+import TableOfContents from "../outline/tableOfContents";
+import { findNode, toTree } from "../outline/tree";
+
+export default function Template({ data }) {
+  const { document, documents } = data;
+  const { fields, frontmatter, html } = document;
+  const { slug } = fields;
+  const chapters = toTree(documents, "/documents");
+  const currentDocument = findNode(chapters, x => x.slug === slug);
+  return (
+    <Layout className="document-container">
+      <SEO title={document.frontmatter.title} keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
+      <div className="sidebar">
+        <TableOfContents className="toc" chapters={chapters} />
+      </div>
+      <div className="document-content">
+        <Breadcrumb className="breadcrumb" chapters={chapters} slug={slug} />
+        <h1>{frontmatter.title}</h1>
+        <div
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+        { currentDocument.children.length > 0 && (
+          <>
+            <h2>See Also</h2>
+            <ChildLinks className="child-links" children={currentDocument.children} />
+          </>
+        )}
+      </div>
+    </Layout>
+  );
+}
+
+export const pageQuery = graphql`
+  query($slug: String!) {
+    document: markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+      }
+    }
+    documents: allMarkdownRemark(filter: { 
+      fields: { slug: { glob: "/documents/**" }}
+    }) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`
