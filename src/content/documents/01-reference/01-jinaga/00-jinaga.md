@@ -1,5 +1,5 @@
 ---
-title: The Jinaga Object
+title: Jinaga
 ---
 
 The primary interface is the Jinaga object.

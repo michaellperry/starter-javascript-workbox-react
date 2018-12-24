@@ -16,7 +16,7 @@ const Header = () => (
         {' '}
         HOME{' '}
       </Link>
-      <Link className="nav-link" to="/documents/00-getting-started/00-getting-started/">
+      <Link className="nav-link" to="/documents/reference/jinaga">
         {' '}
         DOCS{' '}
       </Link>

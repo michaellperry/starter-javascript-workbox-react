@@ -18,7 +18,7 @@ watch<T, U, V>(
 ## Parameters
 
 * **start** - A fact from which to begin the query
-* **preposition** - A template function passed into [`j.for`](../04-for/)
+* **preposition** - A template function passed into [`j.for`](./for)
 * **resultAdded** - A function that is called when a fact is added
 * **resultRemoved** (optional) - A function that is called when a fact is removed
 

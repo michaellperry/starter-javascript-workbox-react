@@ -3,72 +3,32 @@ function pathParent(path) {
     return index < 0 ? '' : path.substring(0, index);
 }
 
-function pathFilename(path) {
-    const index = path.lastIndexOf('/');
-    return index < 0 ? '' : path.substring(index + 1);
-}
-
-function flatten(collection, selector) {
-    if (collection.length === 0) {
-        return [];
-    }
-    else {
-        return collection.map(selector).reduce((a,b) => a.concat(b));
-    }
-}
-
 export function toTree({ edges }, root) {
-    let filesByFolder = {};
-    let foldersByParent = {};
+    let nodesByParent = {};
     edges.forEach(edge => {
-        const path = edge.node.fields.slug.slice(0, -1);
-        const filename = pathFilename(path);
-        const folder = pathParent(path);
-        const parent = pathParent(folder);
+        const path = edge.node.fields.slug;
+        const parent = pathParent(path);
 
-        let files = filesByFolder[folder] || [];
-        files.push({
-            slug: edge.node.fields.slug,
+        let nodes = nodesByParent[parent] || [];
+        nodes.push({
+            slug: path,
             title: edge.node.frontmatter.title,
-            filename: filename
+            fileAbsolutePath: edge.node.fileAbsolutePath
         });
-        filesByFolder[folder] = files;
-
-        let folders = foldersByParent[parent] || {};
-        folders[folder] = true;
-        foldersByParent[parent] = folders;
+        nodesByParent[parent] = nodes;
     });
 
-    return getNodes(filesByFolder, foldersByParent, root);
+    return getNodes(nodesByParent, root);
 }
 
-function getNodes(filesByFolder, foldersByParent, folder) {
-    const folders = Object.keys(foldersByParent[folder] || {});
-    const folderChildren = flatten(folders, f => getNodes(filesByFolder, foldersByParent, f));
-    
-    let files = filesByFolder[folder] || [];
-    if (files.length === 0) {
-        return folderChildren;
-    }
+function getNodes(nodesByParent, folder) {
+    let nodes = nodesByParent[folder] || [];
+    nodes.sort((a,b) => a.fileAbsolutePath > b.fileAbsolutePath ? 1 : -1);
+    nodes.forEach(node => {
+        node.children = getNodes(nodesByParent, node.slug);
+    });
 
-    files.sort((a, b) => a.filename > b.filename ? 1 : -1);
-    const first = files[0];
-    const rest = files.slice(1);
-    const fileChildren = rest.map(f => ({
-        slug: f.slug,
-        title: f.title,
-        filename: f.filename,
-        children: []
-    }));
-
-    let children = fileChildren.concat(folderChildren);
-    children.sort((a,b) => a.filename > b.filename ? 1 : -1);
-    return [{
-        slug: first.slug,
-        title: first.title,
-        filename: pathFilename(folder),
-        children: children
-    }];
+    return nodes;
 }
 
 export function mapNodes(nodes, selector) {

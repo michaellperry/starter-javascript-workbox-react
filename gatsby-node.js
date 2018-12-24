@@ -7,16 +7,36 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require("path");
 
+function pathParent(path) {
+    const index = path.lastIndexOf('/');
+    return index < 0 ? '' : path.substring(0, index);
+}
+
+function pathFilename(path) {
+    const index = path.lastIndexOf('/');
+    return index < 0 ? '' : path.substring(index + 1);
+}
+
+function pathToSlug(filePath) {
+    const regex = /[/][0-9]+-([^/]+)/g;
+    const withoutOrdinals = filePath.replace(regex, '/$1').slice(0, -1);
+    const lastSegment = pathFilename(withoutOrdinals);
+    const folder = pathParent(withoutOrdinals);
+    const secondLastSegment = pathFilename(folder);
+    return lastSegment === secondLastSegment ? folder : withoutOrdinals;
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug,
-    });
-  }
+    const { createNodeField } = actions;
+    if (node.internal.type === `MarkdownRemark`) {
+        const filePath = createFilePath({ node, getNode, basePath: `pages` });
+        const slug = pathToSlug(filePath);
+        createNodeField({
+            node,
+            name: `slug`,
+            value: slug,
+        });
+    }
 }
 
 exports.createPages = ({ actions, graphql }) => {

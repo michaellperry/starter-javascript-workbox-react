@@ -52,6 +52,7 @@ export const pageQuery = graphql`
     }) {
       edges {
         node {
+          fileAbsolutePath
           fields {
             slug
           }
