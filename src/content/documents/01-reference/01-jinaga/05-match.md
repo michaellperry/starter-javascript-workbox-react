@@ -16,7 +16,7 @@ static match<T>(
 
 ## Returns
 
-* A specification that can be used by [`query`](./query) or [`watch`](./watch)
+* A specification that can be used by [`query`](../query/) or [`watch`](../watch/)
 
 ## Examples
 

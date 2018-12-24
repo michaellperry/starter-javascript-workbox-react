@@ -1,6 +1,6 @@
 function pathParent(path) {
-    const index = path.lastIndexOf('/');
-    return index < 0 ? '' : path.substring(0, index);
+    const index = path.lastIndexOf('/', path.length - 2);
+    return index < 0 ? '' : path.substring(0, index + 1);
 }
 
 export function toTree({ edges }, root) {

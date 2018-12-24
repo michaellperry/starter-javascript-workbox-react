@@ -2,7 +2,7 @@
 title: for
 ---
 
-Prepare a template function to be used in [`query`](./query) or [`watch`](./watch).
+Prepare a template function to be used in [`query`](../query/) or [`watch`](../watch/).
 
 ```typescript
 static for<T, U>(
@@ -12,7 +12,7 @@ static for<T, U>(
 
 ## Parameters
 
-* **specification** - A template function, which returns [`j.match`](./match)
+* **specification** - A template function, which returns [`j.match`](../match/)
 
 ## Returns
 

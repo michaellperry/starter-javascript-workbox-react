@@ -14,7 +14,7 @@ query<T, U>(
 ## Parameters
 
 * **start** - A fact from which to begin the query
-* **preposition** - A template function passed into [`j.for`](./for)
+* **preposition** - A template function passed into [`j.for`](../for/)
 
 ## Returns
 

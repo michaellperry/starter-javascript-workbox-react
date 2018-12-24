@@ -10,7 +10,7 @@ static not<T, U>(
 
 ## Parameters
 
-* **condition** - A template function using [`exists`](./exists) or [`notExists`](./not-exists) to invert
+* **condition** - A template function using [`exists`](../exists/) or [`notExists`](./not-exists) to invert
 
 ## Returns
 

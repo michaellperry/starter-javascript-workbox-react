@@ -16,7 +16,7 @@ static exists<T>(
 
 ## Returns
 
-* A condition that can be used in `suchThat` or [`not`](./not)
+* A condition that can be used in `suchThat` or [`not`](../not/)
 
 ## Examples
 

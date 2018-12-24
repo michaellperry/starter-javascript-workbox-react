@@ -8,18 +8,18 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require("path");
 
 function pathParent(path) {
-    const index = path.lastIndexOf('/');
-    return index < 0 ? '' : path.substring(0, index);
+    const index = path.lastIndexOf('/', path.length - 2);
+    return index < 0 ? '' : path.substring(0, index + 1);
 }
 
 function pathFilename(path) {
-    const index = path.lastIndexOf('/');
+    const index = path.lastIndexOf('/', path.length - 2);
     return index < 0 ? '' : path.substring(index + 1);
 }
 
 function pathToSlug(filePath) {
     const regex = /[/][0-9]+-([^/]+)/g;
-    const withoutOrdinals = filePath.replace(regex, '/$1').slice(0, -1);
+    const withoutOrdinals = filePath.replace(regex, '/$1');
     const lastSegment = pathFilename(withoutOrdinals);
     const folder = pathParent(withoutOrdinals);
     const secondLastSegment = pathFilename(folder);

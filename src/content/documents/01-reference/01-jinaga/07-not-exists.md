@@ -16,7 +16,7 @@ static notExists<T>(
 
 ## Returns
 
-* A condition that can be used in `suchThat` or [`not`](./not)
+* A condition that can be used in `suchThat` or [`not`](../not/)
 
 ## Examples
 
@@ -38,7 +38,7 @@ function messageIsNotRedacted(m) {
 }
 ```
 
-The above can be expressed in terms of [`exists`](./exists) and [`not`](./not).
+The above can be expressed in terms of [`exists`](../exists/) and [`not`](../not/).
 The result is the same.
 
 ```typescript

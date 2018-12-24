@@ -10,7 +10,7 @@ const AboutPage = () => (
     <StaticQuery
       query={graphql`
         query AboutQuery {
-          content: markdownRemark(fields: { slug: { eq: "/posts/about" } }) {
+          content: markdownRemark(fields: { slug: { eq: "/posts/about/" } }) {
             html
           }
         }

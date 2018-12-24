@@ -11,7 +11,7 @@ export default function Template({ data }) {
   const { document, documents } = data;
   const { fields, frontmatter, html } = document;
   const { slug } = fields;
-  const chapters = toTree(documents, "/documents");
+  const chapters = toTree(documents, "/documents/");
   const currentDocument = findDocumentBySlug(chapters, slug);
   return (
     <Layout className="document-container">
@@ -68,8 +68,8 @@ export const pageQuery = graphql`
 function findDocumentBySlug(chapters, slug) {
   const document = findNode(chapters, x => x.slug === slug);
   if (!document) {
-    const allSlugs = mapNodes(chapters, x => x.slug).join('\n');
-    throw new Error(`Could not find document for slug ${slug}. Available slugs:\n${allSlugs}`);
+    const allSlugs = chapters.length === 0 ? 'none' : mapNodes(chapters, x => x.slug).join(',');
+    throw new Error(`Could not find document for slug ${slug}. Available slugs: ${allSlugs}`);
   }
   return document;
 }

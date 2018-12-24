@@ -22,13 +22,13 @@ const IndexPage = () => (
       The view is automatically updated as new facts
       arrive, even from other users.
     </p>
-    <Link className="cta" style={{ border: 'none' }} to={'/documents/getting-started'}>
+    <Link className="cta" style={{ border: 'none' }} to={'/documents/getting-started/'}>
       <div className="button-container">Get Started</div>
     </Link>
     <StaticQuery
       query={graphql`
         query IndexQuery {
-          content: markdownRemark(fields: { slug: { eq: "/posts/quick-example" } }) {
+          content: markdownRemark(fields: { slug: { eq: "/posts/quick-example/" } }) {
             html
           }
         }
