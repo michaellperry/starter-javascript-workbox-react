@@ -48,6 +48,16 @@ For example, the following is a zig-zag query.
 It starts by selecting successors.
 Then it jumps up to a different predecessor, and then back down to different successors.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post.Tags" -> "Blog.Tag"
+    "Blog.Post.Tags" -> "Blog.Post"
+    "Blog.Post.Title" -> "Blog.Post"
+    "Blog.Post.Title" -> "Blog.Post.Title" [label="prior"]
+}
+```
+
 ```typescript
 function postTagsByTag(t) {
     return j.match({
