@@ -1,9 +1,10 @@
 ---
 title: The Jinaga Object
-type: book
 ---
 
 The primary interface is the Jinaga object.
+Create one on the server and one in the browser.
+Then create facts and run queries in either place.
 
 ## Initializing Jinaga on the Server
 
@@ -46,4 +47,4 @@ const j = JinagaBrowser.create({
 });
 ```
 
-You can now run all of the queries and fact creation in the browser.
+You can now run queries and create facts in the browser.

@@ -1,6 +1,5 @@
 ---
 title: "PostgreSQL Setup"
-type: book
 ---
 
 Jinaga persists facts on the server in a PostgreSQL database.

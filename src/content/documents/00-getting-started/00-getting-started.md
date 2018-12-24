@@ -1,6 +1,5 @@
 ---
 title: "Getting Started"
-type: book
 ---
 
 Jinaga is both a server-side framework and a client-side library.
