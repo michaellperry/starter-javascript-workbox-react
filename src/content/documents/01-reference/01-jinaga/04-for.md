@@ -16,7 +16,7 @@ static for<T, U>(
 
 ## Returns
 
-* A preposition that can be passed to `query` or `watch`, or used to construct a preposition chain
+* A [preposition](../../preposition/) that can be passed to `query` or `watch`, or used to construct a preposition chain
 
 ## Examples
 

@@ -108,6 +108,6 @@ function postForPostTag(pt) {
 }
 
 const posts = await j.query(tag, j
-    .for(postTagsByPost)
+    .for(postTagsByTag)
     .then(postForPostTag));
 ```
