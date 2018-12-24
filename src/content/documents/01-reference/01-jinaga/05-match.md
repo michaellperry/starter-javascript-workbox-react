@@ -39,6 +39,14 @@ function postsByAuthor(a) {
 
 Call `suchThat` to attach a condition to the template.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+    "Chat.Message.Redacted" -> "Chat.Message" [label=" message" color=red]
+}
+```
+
 ```typescript
 function messagesInChannel(c) {
     return j.match({

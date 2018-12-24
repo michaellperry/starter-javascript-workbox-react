@@ -22,6 +22,14 @@ static exists<T>(
 
 Return only facts that have a specified successor.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Folder" [label=" folder"]
+    "Blog.Post.Published" -> "Blog.Post" [label=" post" color=forestgreen]
+}
+```
+
 ```typescript
 function publishedPostsInFolder(f) {
     return j.match({
@@ -39,6 +47,14 @@ function postIsPublished(p) {
 ```
 
 Return only facts that do not have a specified successor.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+    "Chat.Message.Redacted" -> "Chat.Message" [label=" message" color=red]
+}
+```
 
 ```typescript
 function messagesInChannel(c) {

@@ -11,6 +11,14 @@ Extend it by calling [`then`](./then/).
 
 Build a preposition chain.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+}
+```
+
 ```typescript
 function postsByAuthor(a) {
     return j.match({

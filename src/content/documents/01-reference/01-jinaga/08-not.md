@@ -20,6 +20,14 @@ static not<T, U>(
 
 Return only facts that do not have a specified successor.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+    "Chat.Message.Redacted" -> "Chat.Message" [label=" message" color=red]
+}
+```
+
 ```typescript
 function messagesInChannel(c) {
     return j.match({

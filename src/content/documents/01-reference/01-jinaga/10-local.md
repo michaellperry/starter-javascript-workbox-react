@@ -27,6 +27,14 @@ None
 
 Store device configuration on the local machine.
 
+```dot
+digraph Application {
+    rankdir=BT
+    "Application.Configuration" -> "Jinaga.Device" [label=" device"]
+    "Application.Configuration" -> "Application.Configuration" [label=" * prior" color=red]
+}
+```
+
 ```typescript
 function configurationOnDevice(d) {
     return j.match({

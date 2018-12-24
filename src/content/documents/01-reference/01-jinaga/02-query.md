@@ -24,6 +24,13 @@ query<T, U>(
 
 Query for successors of a fact.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+}
+```
+
 ```typescript
 function postsByAuthor(a) {
     return j.match({
@@ -36,6 +43,14 @@ const posts = await j.query(person, j.for(postsByAuthor));
 ```
 
 Query for successors of successors.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+}
+```
 
 ```typescript
 function tagsForPost(p) {
@@ -87,6 +102,13 @@ const tags = await j.query(person, j.for(tagsForPostsByAuthor));
 
 When a fact has many predecessors, use an array within the template function.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post.Tags" -> "Blog.Tag" [label=" * tags"]
+}
+```
+
 ```typescript
 function postTagsByTag(t) {
     return j.match({
@@ -99,6 +121,14 @@ const postTags = await j.query(tag, j.for(postTagsByTag));
 ```
 
 Query for predecessor of successors.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post.Tags" -> "Blog.Tag" [label=" * tags"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+}
+```
 
 ```typescript
 function postForPostTag(pt) {

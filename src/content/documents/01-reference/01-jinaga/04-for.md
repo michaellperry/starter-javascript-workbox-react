@@ -22,6 +22,13 @@ static for<T, U>(
 
 Prepare a template function for `query`.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+}
+```
+
 ```typescript
 function postsByAuthor(a) {
     return j.match({
@@ -34,6 +41,14 @@ const posts = await j.query(person, j.for(postsByAuthor));
 ```
 
 Build a preposition chain.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+}
+```
 
 ```typescript
 function tagsForPost(p) {

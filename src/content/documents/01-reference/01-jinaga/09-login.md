@@ -26,6 +26,13 @@ None
 
 Display messages sent to the logged in user.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Jinaga.User" [label=" to"]
+}
+```
+
 ```typescript
 function messagesToUser(u) {
     return j.match({
@@ -44,6 +51,14 @@ j.watch(userFact, j.for(messagesToUser), displayMessage);
 ```
 
 Create a fact representing the user's display name so that other people can read it.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.User.Name" -> "Jinaga.User" [label=" user"]
+    "Chat.User.Name" -> "Chat.User.Name" [label=" * prior" color=red]
+}
+```
 
 ```typescript
 function namesForUser(u) {

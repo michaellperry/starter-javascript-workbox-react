@@ -22,6 +22,14 @@ then<V>(
 
 Build a preposition chain.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Person" [label=" author"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+}
+```
+
 ```typescript
 function postsByAuthor(a) {
     return j.match({
@@ -51,10 +59,10 @@ Then it jumps up to a different predecessor, and then back down to different suc
 ```dot
 digraph Blog {
     rankdir=BT
-    "Blog.Post.Tags" -> "Blog.Tag"
-    "Blog.Post.Tags" -> "Blog.Post"
-    "Blog.Post.Title" -> "Blog.Post"
-    "Blog.Post.Title" -> "Blog.Post.Title" [label="prior"]
+    "Blog.Post.Tags" -> "Blog.Tag" [label=" * tags"]
+    "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
+    "Blog.Post.Title" -> "Blog.Post" [label=" post"]
+    "Blog.Post.Title" -> "Blog.Post.Title" [label=" * prior" color=red]
 }
 ```
 

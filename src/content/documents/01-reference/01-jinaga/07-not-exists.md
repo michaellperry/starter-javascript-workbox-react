@@ -22,6 +22,14 @@ static notExists<T>(
 
 Return only facts that do not have a specified successor.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+    "Chat.Message.Redacted" -> "Chat.Message" [label=" message" color=red]
+}
+```
+
 ```typescript
 function messagesInChannel(c) {
     return j.match({
@@ -59,6 +67,14 @@ function messageIsRedacted(m) {
 
 Double negatives are supported.
 They are just hard to read.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Blog.Post" -> "Blog.Folder" [label=" folder"]
+    "Blog.Post.Published" -> "Blog.Post" [label=" post" color=forestgreen]
+}
+```
 
 ```typescript
 function publishedPostsInFolder(f) {

@@ -31,6 +31,13 @@ watch<T, U, V>(
 Watch for new facts.
 Display them to the user as they arrive.
 
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+}
+```
+
 ```typescript
 function displayMessage(m) {
     // Update the user interface
@@ -50,6 +57,14 @@ Remove facts that no longer match the query.
 This will occur if the template function has a condition that later becomes false.
 The `resultAdded` function must return a value.
 This value will be pased to `resultRemoved` when the condition changes.
+
+```dot
+digraph Blog {
+    rankdir=BT
+    "Chat.Message" -> "Chat.Channel" [label=" channel"]
+    "Chat.Message.Redacted" -> "Chat.Message" [label=" message" color=red]
+}
+```
 
 ```typescript
 function displayMessage(m) {
