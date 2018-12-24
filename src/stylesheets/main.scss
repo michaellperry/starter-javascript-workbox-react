@@ -212,9 +212,12 @@ ol.toc {
         font-size: 1.8rem;
     }
 
-    li li li a {
-        margin-left: 12px;
-        font-size: 1.6rem;
+    li li li {
+        margin: 0px 0px 0px 12px;
+
+        a {
+            font-size: 1.6rem;
+        }
     }
 
     ol {
