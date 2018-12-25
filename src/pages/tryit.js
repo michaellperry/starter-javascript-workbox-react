@@ -1,31 +1,47 @@
-//import { graphql, StaticQuery } from 'gatsby';
-import React, { Component } from 'react';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
 import * as monaco from "monaco-editor";
+import React, { Component } from 'react';
+import Header from '../components/header';
+import SEO from '../components/seo';
 
 class TryItPage extends Component {
     render() {
         return (
-            <Layout className="body-container">
+            <div className="tryit-container">
                 <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
-                <div className="page-content">
-                    <h1>Try it!</h1>
-                    <div id="container" style={{width:800,height:600,border:"1px solid #ccc"}}></div>
+                <div className="index-head-container">
+                    <Header />
                 </div>
-            </Layout>
+                <div className="command-bar">
+                    <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
+                </div>
+                <div id="container"></div>
+            </div>
         );
     }
 
     componentDidMount() {
-        monaco.editor.create(document.getElementById('container'), {
+        this.editor = monaco.editor.create(document.getElementById('container'), {
             value: [
                 'function x() {',
                 '\tconsole.log("Hello world!");',
                 '}'
             ].join('\n'),
-            language: 'javascript'
+            language: 'javascript',
+            minimap: {
+                enabled: false
+            }
         });
+
+        window.addEventListener('resize', () => {
+            this.editor.layout();
+        });
+    }
+
+    runCode() {
+        const code = this.editor.getValue();
+        // eslint-disable-next-line
+        const f = new Function(code);
+        f();
     }
 }
 
