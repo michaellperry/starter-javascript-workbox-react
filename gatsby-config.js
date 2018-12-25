@@ -45,7 +45,8 @@ module.exports = {
             options: {
               noInlineHighlight: true
             }
-          }
+          },
+          `gatsby-remark-copy-linked-files`
         ]
       }
     },
