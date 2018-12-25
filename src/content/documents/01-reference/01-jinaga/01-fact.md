@@ -69,13 +69,14 @@ await j.fact({
         author: person
     },
     tags: [{
-        type: 'Blog.Topic',
+        type: 'Blog.Tag',
         name: 'React'
     }, {
-        type: 'Blog.Topic',
+        type: 'Blog.Tag',
         name: 'CSS'
     }, {
-        type: 'Blog.Topic',
+        type: 'Blog.Tag',
         name: 'Micro-Frontends'
     }]
 });
+```
