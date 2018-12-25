@@ -5,7 +5,8 @@
  */
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
-const path = require("path");
+const MonacoWebpackPlugin = require(`monaco-editor-webpack-plugin`);
+const path = require(`path`);
 
 function pathParent(path) {
     const index = path.lastIndexOf('/', path.length - 2);
@@ -80,5 +81,13 @@ exports.createPages = ({ actions, graphql }) => {
                 });
             })
         );
+    });
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+    actions.setWebpackConfig({
+        plugins: [
+            new MonacoWebpackPlugin()
+        ]
     });
 };
