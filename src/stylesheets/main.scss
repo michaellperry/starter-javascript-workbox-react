@@ -267,7 +267,7 @@ ol.child-links {
     overflow: hidden;
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-template-rows: 66.67px 50px 1fr;
+    grid-template-rows: 66.67px 50px 0.7fr 0.3fr;
 
     .index-head-container {
         grid-row: 1;
@@ -291,5 +291,12 @@ ol.child-links {
         grid-column: 2;
         overflow: hidden;
         border:1px solid #ccc;
+    }
+
+    #output {
+        grid-row: 4;
+        grid-column: 2;
+        overflow: scroll;
+        background: #eee;
     }
 }

@@ -15,6 +15,7 @@ class TryItPage extends Component {
                     <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
                 </div>
                 <div id="container"></div>
+                <pre id="output"></pre>
             </div>
         );
     }
@@ -22,9 +23,10 @@ class TryItPage extends Component {
     componentDidMount() {
         this.editor = monaco.editor.create(document.getElementById('container'), {
             value: [
-                'function x() {',
-                '\tconsole.log("Hello world!");',
-                '}'
+                "const tagReact = await j.fact({",
+                "    type: 'Blog.Tag',",
+                "    name: 'React'",
+                "});"
             ].join('\n'),
             language: 'javascript',
             minimap: {
@@ -39,9 +41,27 @@ class TryItPage extends Component {
 
     runCode() {
         const code = this.editor.getValue();
-        // eslint-disable-next-line
-        const f = new Function(code);
-        f();
+        const body = `
+            async function f() { ${code} }
+            return f();
+        `;
+        try {
+            // eslint-disable-next-line
+            const f = new Function(body);
+            f().then(() => {
+                this.setOutput('Success');
+            })
+            .catch(e => {
+                this.setOutput(`Failed: ${JSON.stringify(e)}`);
+            });
+        }
+        catch (e) {
+            this.setOutput(`Exception: ${JSON.stringify(e)}`);
+        }
+    }
+
+    setOutput(result) {
+        document.getElementById('output').innerText = result;
     }
 }
 
