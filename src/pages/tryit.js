@@ -42,26 +42,35 @@ class TryItPage extends Component {
     runCode() {
         const code = this.editor.getValue();
         const body = `
-            async function f() { ${code} }
-            return f();
+            async function f(context) {
+                with (context) {
+                    try {
+                        ${code};
+                        console.log('Success');
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                }
+            }
+            f(context);
         `;
-        try {
-            // eslint-disable-next-line
-            const f = new Function(body);
-            f().then(() => {
-                this.setOutput('Success');
-            })
-            .catch(e => {
-                this.setOutput(`Failed: ${JSON.stringify(e)}`);
-            });
-        }
-        catch (e) {
-            this.setOutput(`Exception: ${JSON.stringify(e)}`);
-        }
+        this.clearOutput();
+        // eslint-disable-next-line
+        const f = new Function('context', body);
+        f({
+            console: {
+                log: (result) => { this.setOutput(result); }
+            }
+        });
+    }
+
+    clearOutput() {
+        document.getElementById('output').innerHTML = '';
     }
 
     setOutput(result) {
-        document.getElementById('output').innerText = result;
+        document.getElementById('output').innerText += result + '\n';
     }
 }
 
