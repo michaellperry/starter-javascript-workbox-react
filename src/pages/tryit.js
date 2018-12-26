@@ -2,6 +2,7 @@ import * as monaco from "monaco-editor";
 import React, { Component } from 'react';
 import Header from '../components/header';
 import SEO from '../components/seo';
+import { JinagaBrowser } from "jinaga/dist/jinaga";
 
 class TryItPage extends Component {
     render() {
@@ -21,6 +22,7 @@ class TryItPage extends Component {
     }
 
     componentDidMount() {
+        this.j = JinagaBrowser.create({});
         this.editor = monaco.editor.create(document.getElementById('container'), {
             value: [
                 "const tagReact = await j.fact({",
@@ -45,8 +47,7 @@ class TryItPage extends Component {
             async function f(context) {
                 with (context) {
                     try {
-                        ${code};
-                        console.log('Success');
+                        ${code}
                     }
                     catch (e) {
                         console.log(e);
@@ -61,7 +62,8 @@ class TryItPage extends Component {
         f({
             console: {
                 log: (result) => { this.setOutput(result); }
-            }
+            },
+            j: this.j
         });
     }
 
