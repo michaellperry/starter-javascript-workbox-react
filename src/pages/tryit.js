@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor";
 import React, { Component } from 'react';
 import Header from '../components/header';
 import SEO from '../components/seo';
-import { JinagaBrowser } from "jinaga/dist/jinaga";
+//import { JinagaBrowser } from "jinaga/dist/jinaga";
 
 class TryItPage extends Component {
     render() {
@@ -22,7 +22,7 @@ class TryItPage extends Component {
     }
 
     componentDidMount() {
-        this.j = JinagaBrowser.create({});
+        // this.j = JinagaBrowser.create({});
         this.editor = monaco.editor.create(document.getElementById('container'), {
             value: [
                 "const tagReact = await j.fact({",
@@ -36,9 +36,9 @@ class TryItPage extends Component {
             }
         });
 
-        window.addEventListener('resize', () => {
-            this.editor.layout();
-        });
+        // window.addEventListener('resize', () => {
+        //     this.editor.layout();
+        // });
     }
 
     runCode() {
