@@ -1,4 +1,3 @@
-import * as monaco from "monaco-editor";
 import React, { Component } from 'react';
 import Header from '../components/header';
 import SEO from '../components/seo';
@@ -23,48 +22,54 @@ class TryItPage extends Component {
 
     componentDidMount() {
         this.j = JinagaBrowser.create({});
-        this.editor = monaco.editor.create(document.getElementById('container'), {
-            value: [
-                "const tagReact = await j.fact({",
-                "    type: 'Blog.Tag',",
-                "    name: 'React'",
-                "});"
-            ].join('\n'),
-            language: 'javascript',
-            minimap: {
-                enabled: false
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            this.editor.layout();
-        });
+        if (typeof window !== "undefined") {
+            import("monaco-editor").then(monaco => {
+                this.editor = monaco.editor.create(document.getElementById('container'), {
+                    value: [
+                        "const tagReact = await j.fact({",
+                        "    type: 'Blog.Tag',",
+                        "    name: 'React'",
+                        "});"
+                    ].join('\n'),
+                    language: 'javascript',
+                    minimap: {
+                        enabled: false
+                    }
+                });
+        
+                window.addEventListener('resize', () => {
+                    this.editor.layout();
+                });
+            });
+        }
     }
 
     runCode() {
-        const code = this.editor.getValue();
-        const body = `
-            async function f(context) {
-                with (context) {
-                    try {
-                        ${code}
-                    }
-                    catch (e) {
-                        console.log(e);
+        if (this.editor) {
+            const code = this.editor.getValue();
+            const body = `
+                async function f(context) {
+                    with (context) {
+                        try {
+                            ${code}
+                        }
+                        catch (e) {
+                            console.log(e);
+                        }
                     }
                 }
-            }
-            f(context);
-        `;
-        this.clearOutput();
-        // eslint-disable-next-line
-        const f = new Function('context', body);
-        f({
-            console: {
-                log: (result) => { this.setOutput(result); }
-            },
-            j: this.j
-        });
+                f(context);
+            `;
+            this.clearOutput();
+            // eslint-disable-next-line
+            const f = new Function('context', body);
+            f({
+                console: {
+                    log: (result) => { this.setOutput(result); }
+                },
+                j: this.j
+            });
+        }
     }
 
     clearOutput() {
