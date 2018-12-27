@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/header';
 import SEO from '../components/seo';
 import { JinagaBrowser } from "jinaga/dist/jinaga";
+import '../stylesheets/main.scss';
 
 class TryItPage extends Component {
     render() {
@@ -22,26 +23,24 @@ class TryItPage extends Component {
 
     componentDidMount() {
         this.j = JinagaBrowser.create({});
-        if (typeof window !== "undefined") {
-            import("monaco-editor").then(monaco => {
-                this.editor = monaco.editor.create(document.getElementById('container'), {
-                    value: [
-                        "const tagReact = await j.fact({",
-                        "    type: 'Blog.Tag',",
-                        "    name: 'React'",
-                        "});"
-                    ].join('\n'),
-                    language: 'javascript',
-                    minimap: {
-                        enabled: false
-                    }
-                });
-        
-                window.addEventListener('resize', () => {
-                    this.editor.layout();
-                });
+        import("monaco-editor").then(monaco => {
+            this.editor = monaco.editor.create(document.getElementById('container'), {
+                value: [
+                    "const tagReact = await j.fact({",
+                    "    type: 'Blog.Tag',",
+                    "    name: 'React'",
+                    "});"
+                ].join('\n'),
+                language: 'javascript',
+                minimap: {
+                    enabled: false
+                }
             });
-        }
+    
+            window.addEventListener('resize', () => {
+                this.editor.layout();
+            });
+        });
     }
 
     runCode() {
