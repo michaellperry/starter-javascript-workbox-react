@@ -1,4 +1,4 @@
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { JinagaBrowser } from "jinaga/dist/jinaga";
 import React, { Component } from 'react';
 import Header from '../components/header';
@@ -6,21 +6,7 @@ import MonacoEditor from '../components/MonacoEditor';
 import SEO from '../components/seo';
 import '../stylesheets/main.scss';
 
-const query = graphql`
-query TryItQuery {
-    sourceFiles: allFile(filter: { sourceInstanceName: { eq: "jinaga" } }) {
-        edges {
-            node {
-                relativePath
-                childRawCode {
-                    content
-                }
-            }
-        }
-    }
-}`;
-
-class TryItPage extends Component {
+class ExamplePage extends Component {
     constructor(props) {
         super(props);
         this.editor = React.createRef();
@@ -30,25 +16,24 @@ class TryItPage extends Component {
     }
 
     render() {
+        const { example, sourceFiles } = this.props.data;
         return (
-            <StaticQuery query={query} render={({ sourceFiles }) => (
-                <div className="tryit-container">
-                    <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
-                    <div className="index-head-container">
-                        <Header />
-                    </div>
-                    <div className="command-bar">
-                        <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
-                    </div>
-                    <MonacoEditor ref={this.editor} key="MonacoEditor"
-                        libraries={sourceFiles.edges.map(edge => ({
-                            path: edge.node.relativePath,
-                            content: edge.node.childRawCode.content
-                        }))} />
-                    <pre className="output">{this.state.output}</pre>
+            <div className="tryit-container">
+                <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
+                <div className="index-head-container">
+                    <Header />
                 </div>
-            )}>
-            </StaticQuery>
+                <div className="command-bar">
+                    <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
+                </div>
+                <MonacoEditor ref={this.editor} key="MonacoEditor"
+                    libraries={sourceFiles.edges.map(edge => ({
+                        path: edge.node.relativePath,
+                        content: edge.node.childRawCode.content
+                    }))}
+                    content={example.childRawCode.content} />
+                <pre className="output">{this.state.output}</pre>
+            </div>
         );
     }
 
@@ -104,4 +89,26 @@ class TryItPage extends Component {
     }
 }
 
-export default TryItPage;
+export default ExamplePage;
+
+export const query = graphql`
+query($slug: String!) {
+    example: file(
+        relativePath: { eq: $slug },
+        sourceInstanceName: { eq: "examples" } )
+    {
+        childRawCode {
+            content
+        }
+    },
+    sourceFiles: allFile(filter: { sourceInstanceName: { eq: "jinaga" } }) {
+        edges {
+            node {
+                relativePath
+                childRawCode {
+                    content
+                }
+            }
+        }
+    }
+}`

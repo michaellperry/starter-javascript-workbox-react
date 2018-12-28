@@ -38,6 +38,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `examples`,
+        path: `${__dirname}/src/examples/`
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `jinaga`,
         path: `${__dirname}/node_modules/jinaga/dist/types/`
       }
@@ -61,6 +68,13 @@ module.exports = {
       resolve: `gatsby-transformer-code`,
       options: {
         name: `jinaga`,
+        extensions: [ 'ts' ]
+      }
+    },
+    {
+      resolve: `gatsby-transformer-code`,
+      options: {
+        name: `examples`,
         extensions: [ 'ts' ]
       }
     },

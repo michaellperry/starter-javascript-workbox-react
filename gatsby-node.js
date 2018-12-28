@@ -40,48 +40,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     }
 }
 
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
   
-    return new Promise((resolve, reject) => {
-        const lessonPage = path.resolve("src/templates/documentTemplate.js");
-        resolve(
-            graphql(
-            `
-                {
-                    allMarkdownRemark(filter: { 
-                        fields: { slug: { glob: "/documents/**" }}
-                      }) {
-                        edges {
-                            node {
-                                frontmatter {
-                                    title
-                                }
-                                fields {
-                                    slug
-                                }
-                            }
-                        }
-                    }
-                }
-            `
-            ).then(result => {
-                if (result.errors) {
-                    reject(result.errors);
-                }
-
-                result.data.allMarkdownRemark.edges.forEach(edge => {
-                    createPage({
-                        path: edge.node.fields.slug,
-                        component: lessonPage,
-                        context: {
-                            slug: edge.node.fields.slug
-                        }
-                    });
-                });
-            })
-        );
-    });
+    (await loadDocumentPages(graphql)).forEach(page => createPage(page));
+    (await loadExamplePages(graphql)).forEach(page => createPage(page));
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -91,3 +54,60 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         ]
     });
 };
+
+async function loadDocumentPages(graphql) {
+    const doumentTemplate = path.resolve("src/templates/documentTemplate.js");
+    const result = await graphql(`
+        {
+            allMarkdownRemark(filter: { 
+                fields: { slug: { glob: "/documents/**" }}
+                }) {
+                edges {
+                    node {
+                        frontmatter {
+                            title
+                        }
+                        fields {
+                            slug
+                        }
+                    }
+                }
+            }
+        }
+    `);
+    if (result.errors) {
+        throw result.errors;
+    }
+    return result.data.allMarkdownRemark.edges.map(edge => ({
+        path: edge.node.fields.slug,
+        component: doumentTemplate,
+        context: {
+            slug: edge.node.fields.slug
+        }
+    }));
+}
+
+async function loadExamplePages(graphql) {
+    const exampleTemplate = path.resolve("src/templates/example.js");
+    const result = await graphql(`
+        {
+            allFile(filter: {sourceInstanceName: {eq: "examples"}}) {
+                edges {
+                    node {
+                        relativePath
+                    }
+                }
+            }
+        }
+    `);
+    if (result.errors) {
+        throw result.errors;
+    }
+    return result.data.allFile.edges.map(edge => ({
+        path: `examples/${edge.node.relativePath}`,
+        component: exampleTemplate,
+        context: {
+            slug: edge.node.relativePath
+        }
+    }));
+}
