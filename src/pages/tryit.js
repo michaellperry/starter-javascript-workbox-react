@@ -6,7 +6,8 @@ import MonacoEditor from '../components/MonacoEditor';
 import SEO from '../components/seo';
 import '../stylesheets/main.scss';
 
-const query = graphql`{
+const query = graphql`
+query TryItQuery {
     sourceFiles: allFile(filter: { sourceInstanceName: { eq: "jinaga" } }) {
         edges {
             node {
@@ -17,7 +18,7 @@ const query = graphql`{
             }
         }
     }
-}`
+}`;
 
 class TryItPage extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class TryItPage extends Component {
 
     render() {
         return (
-            <StaticQuery query={query} render={(data) => (
+            <StaticQuery query={query} render={({ sourceFiles }) => (
                 <div className="tryit-container">
                     <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
                     <div className="index-head-container">
@@ -39,7 +40,11 @@ class TryItPage extends Component {
                     <div className="command-bar">
                         <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
                     </div>
-                    <MonacoEditor ref={this.editor} key="MonacoEditor" />
+                    <MonacoEditor ref={this.editor} key="MonacoEditor"
+                        libraries={sourceFiles.edges.map(edge => ({
+                            path: edge.node.relativePath,
+                            content: edge.node.childRawCode.content
+                        }))} />
                     <pre className="output">{this.state.output}</pre>
                 </div>
             )}>
@@ -65,23 +70,30 @@ class TryItPage extends Component {
                     }
                 }
             `;
-            this.clearOutput();
-            // eslint-disable-next-line
-            const f = new Function('context', body);
-            f({
-                console: {
-                    log: (result) => { this.setOutput(result); }
-                },
-                j: this.j
+            let output = '';
+            try {
+                // eslint-disable-next-line
+                const f = new Function('context', body);
+                f({
+                    console: {
+                        log: (result) => {
+                            // Log immediately...
+                            output += result + '\n';
+                            // And later
+                            this.setOutput(result);
+                        }
+                    },
+                    j: this.j
+                });
+            }
+            catch (e) {
+                output = e.message;
+            }
+            this.setState({
+                ...this.state,
+                output
             });
         }
-    }
-
-    clearOutput() {
-        this.setState({
-            ...this.state,
-            output: ''
-        });
     }
 
     setOutput(result) {

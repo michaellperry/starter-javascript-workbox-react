@@ -9,19 +9,30 @@ class MonacoEditor extends Component {
 
     componentDidMount() {
         import("monaco-editor").then(monaco => {
-            // monaco.languages.typescript.javascriptDefaults.addExtraLib(
+            const libraries = this.props.libraries || [];
+            libraries.forEach(library => {
+                monaco.languages.typescript.typescriptDefaults.addExtraLib(
+                    library.content, `file:///node_modules/@types/jinaga/${library.path}`);
+            });
+            monaco.languages.typescript.typescriptDefaults.addExtraLib(
+                'import { Jinaga } from "jinaga"; declare global { const j: Jinaga; } export {};',
+                'file:///globals.d.ts'
+            );
 
-            // );
-
-            this.editor = monaco.editor.create(document.getElementById('container'), {
-                value: `async function tryit() {
+            const code = `async function tryit() {
     const tagReact = await j.fact({
         type: 'Blog.Tag',
         name: 'React'
     });
+
+    console.log(JSON.stringify(tagReact));
 }
-`,
-                language: 'typescript',
+
+tryit();
+`;
+            const model = monaco.editor.createModel(code, 'typescript', monaco.Uri.parse('file:///main.ts'));
+            this.editor = monaco.editor.create(document.getElementById('container'), {
+                model,
                 minimap: {
                     enabled: false
                 }
