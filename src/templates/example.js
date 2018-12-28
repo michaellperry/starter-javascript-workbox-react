@@ -45,38 +45,51 @@ class ExamplePage extends Component {
         const editor = this.editor.current;
         if (editor) {
             const code = editor.getValue();
-            const body = `
-                with (context) {
+            import('typescript').then(ts => {
+                const body = `
+                    with (context) {
+                        try {
+                            ${code}
+                        }
+                        catch (e) {
+                            console.log(e);
+                        }
+                    }
+                `;
+                const { diagnostics, outputText } = ts.transpileModule(body, {
+                    compilerOptions: {
+                        module: ts.ModuleKind.None
+                    }
+                });
+                let output = '';
+                if (diagnostics.length > 0) {
+                    output = diagnostics.map(d => d.messageText).join('\n');
+                }
+                else {
                     try {
-                        ${code}
+                        // eslint-disable-next-line
+                        const f = new Function('context', outputText);
+                        f({
+                            console: {
+                                log: (result) => {
+                                    // Log immediately...
+                                    output += result + '\n';
+                                    // And later
+                                    this.setOutput(result);
+                                }
+                            },
+                            j: this.j
+                        });
                     }
                     catch (e) {
-                        console.log(e);
+                        output = e.message;
                     }
                 }
-            `;
-            let output = '';
-            try {
-                // eslint-disable-next-line
-                const f = new Function('context', body);
-                f({
-                    console: {
-                        log: (result) => {
-                            // Log immediately...
-                            output += result + '\n';
-                            // And later
-                            this.setOutput(result);
-                        }
-                    },
-                    j: this.j
+
+                this.setState({
+                    ...this.state,
+                    output
                 });
-            }
-            catch (e) {
-                output = e.message;
-            }
-            this.setState({
-                ...this.state,
-                output
             });
         }
     }
