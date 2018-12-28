@@ -1,15 +1,15 @@
 (async () => {
-    const person = {
-        type: 'Jinaga.User',
-        publicKey: '---IF THIS WERE A REAL USER, THEIR PUBLIC KEY WOULD BE HERE---'
-    };
-
+    // The predecessors are all listed out inline.
+    // You don't have to call j.fact for each and every one.
     const tags = await j.fact({
         type: 'Blog.Post.Tags',
         post: {
             type: 'Blog.Post',
             created: new Date(),
-            author: person
+            author: {
+                type: 'Jinaga.User',
+                publicKey: '---IF THIS WERE A REAL USER, THEIR PUBLIC KEY WOULD BE HERE---'
+            }
         },
         tags: [{
             type: 'Blog.Tag',

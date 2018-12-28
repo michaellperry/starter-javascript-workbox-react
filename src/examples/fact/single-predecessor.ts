@@ -10,5 +10,7 @@
     });
 
     // A predecessor is just another JSON object.
+    // It's called a predecessor becuase it comes first.
+    // In this case, we have to have a person before they can write a post.
     console.log(JSON.stringify(post, null, 2));
 })();

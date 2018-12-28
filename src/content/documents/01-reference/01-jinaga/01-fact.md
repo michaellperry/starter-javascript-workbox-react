@@ -39,6 +39,9 @@ const tagReact = await j.fact({
 [Try it](/examples/fact/single-fact)
 
 Create a fact with a single predecessor.
+Why is this called a predecessor?
+Because it comes before.
+We have to have a person before they can write a blog post.
 
 ```typescript
 const post = await j.fact({
@@ -51,6 +54,7 @@ const post = await j.fact({
 [Try it](/examples/fact/single-predecessor)
 
 Create a fact with multiple predecessors.
+Just put them in an array.
 
 ```typescript
 await j.fact({

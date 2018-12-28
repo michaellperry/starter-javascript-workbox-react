@@ -18,9 +18,12 @@
         tags: [tagReact, tagCss, tagMicroFrontends]
     });
 
+    // Multiple predecessors are just an array of JSON objects.
     console.log(JSON.stringify(tags, null, 2));
 })();
 
+// I created this helper function to simplify the example.
+// A real application would have a ton of these things.
 async function createTag(name) {
     return await j.fact({
         type: 'Blog.Tag',

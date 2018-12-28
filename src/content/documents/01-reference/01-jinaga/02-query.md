@@ -23,6 +23,9 @@ query<T, U>(
 ## Examples
 
 Query for successors of a fact.
+What is a successor?
+It's the opposite of a predecessor.
+If a person is the predecessor of a post, then a post is a successor of a person.
 
 ```dot
 digraph Blog {
@@ -30,6 +33,10 @@ digraph Blog {
     "Blog.Post" -> "Blog.Person" [label=" author"]
 }
 ```
+
+You don't want just any successor.
+You want those of a specific type with a specific relationship.
+Express this by writing a template function.
 
 ```typescript
 function postsByAuthor(a) {
