@@ -1,0 +1,29 @@
+(async () => {
+    const person = await j.fact({
+        type: 'Jinaga.User',
+        publicKey: '---IF THIS WERE A REAL USER, THEIR PUBLIC KEY WOULD BE HERE---'
+    });
+    const post = await j.fact({
+        type: 'Blog.Post',
+        created: new Date(),
+        author: person
+    });
+    const tagReact = await createTag('React');
+    const tagCss = await createTag('CSS');
+    const tagMicroFrontends = await createTag('Micro-Frontends');
+
+    const tags = await j.fact({
+        type: 'Blog.Post.Tags',
+        post: post,
+        tags: [tagReact, tagCss, tagMicroFrontends]
+    });
+
+    console.log(JSON.stringify(tags, null, 2));
+})();
+
+async function createTag(name) {
+    return await j.fact({
+        type: 'Blog.Tag',
+        name
+    });
+}

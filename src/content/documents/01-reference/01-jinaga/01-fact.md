@@ -48,6 +48,8 @@ const post = await j.fact({
 });
 ```
 
+[Try it](/examples/single-predecessor)
+
 Create a fact with multiple predecessors.
 
 ```typescript
@@ -57,6 +59,8 @@ await j.fact({
     tags: [tagReact, tagCss, tagMicroFrontends]
 });
 ```
+
+[Try it](/examples/multiple-predecessors)
 
 You can specify the predecessors inline.
 The predecessor facts will be persisted first.
@@ -82,3 +86,5 @@ await j.fact({
     }]
 });
 ```
+
+[Try it](/examples/all-at-once)
