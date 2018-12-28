@@ -3,35 +3,43 @@ import Header from '../components/header';
 import SEO from '../components/seo';
 import { JinagaBrowser } from "jinaga/dist/jinaga";
 import '../stylesheets/main.scss';
+import { graphql, StaticQuery } from 'gatsby';
 
-class TryItPage extends Component {
+const query = graphql`{
+    sourceFiles: allFile(filter: { sourceInstanceName: { eq: "jinaga" } }) {
+        edges {
+            node {
+                relativePath
+                childRawCode {
+                    content
+                }
+            }
+        }
+    }
+}`
+
+class MonacoEditor extends Component {
     render() {
         return (
-            <div className="tryit-container">
-                <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
-                <div className="index-head-container">
-                    <Header />
-                </div>
-                <div className="command-bar">
-                    <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
-                </div>
-                <div id="container"></div>
-                <pre id="output"></pre>
-            </div>
+            <div id="container"></div>
         );
     }
 
     componentDidMount() {
-        this.j = JinagaBrowser.create({});
         import("monaco-editor").then(monaco => {
+            // monaco.languages.typescript.javascriptDefaults.addExtraLib(
+
+            // );
+
             this.editor = monaco.editor.create(document.getElementById('container'), {
-                value: [
-                    "const tagReact = await j.fact({",
-                    "    type: 'Blog.Tag',",
-                    "    name: 'React'",
-                    "});"
-                ].join('\n'),
-                language: 'javascript',
+                value: `async function tryit() {
+    const tagReact = await j.fact({
+        type: 'Blog.Tag',
+        name: 'React'
+    });
+}
+`,
+                language: 'typescript',
                 minimap: {
                     enabled: false
                 }
@@ -43,21 +51,56 @@ class TryItPage extends Component {
         });
     }
 
+    getValue() {
+        return this.editor.getValue();
+    }
+}
+
+class TryItPage extends Component {
+    constructor(props) {
+        super(props);
+        this.editor = React.createRef();
+        this.state = {
+            output: ''
+        };
+    }
+
+    render() {
+        return (
+            <StaticQuery query={query} render={(data) => (
+                <div className="tryit-container">
+                    <SEO title="Try It" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
+                    <div className="index-head-container">
+                        <Header />
+                    </div>
+                    <div className="command-bar">
+                        <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
+                    </div>
+                    <MonacoEditor ref={this.editor} key="MonacoEditor" />
+                    <pre className="output">{this.state.output}</pre>
+                </div>
+            )}>
+            </StaticQuery>
+        );
+    }
+
+    componentDidMount() {
+        this.j = JinagaBrowser.create({});
+    }
+
     runCode() {
-        if (this.editor) {
-            const code = this.editor.getValue();
+        const editor = this.editor.current;
+        if (editor) {
+            const code = editor.getValue();
             const body = `
-                async function f(context) {
-                    with (context) {
-                        try {
-                            ${code}
-                        }
-                        catch (e) {
-                            console.log(e);
-                        }
+                with (context) {
+                    try {
+                        ${code}
+                    }
+                    catch (e) {
+                        console.log(e);
                     }
                 }
-                f(context);
             `;
             this.clearOutput();
             // eslint-disable-next-line
@@ -72,11 +115,17 @@ class TryItPage extends Component {
     }
 
     clearOutput() {
-        document.getElementById('output').innerHTML = '';
+        this.setState({
+            ...this.state,
+            output: ''
+        });
     }
 
     setOutput(result) {
-        document.getElementById('output').innerText += result + '\n';
+        this.setState({
+            ...this.state,
+            output: this.state.output + result + '\n'
+        });
     }
 }
 

@@ -36,6 +36,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `jinaga`,
+        path: `${__dirname}/node_modules/jinaga/dist/types/`
+      }
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -48,6 +55,13 @@ module.exports = {
           },
           `gatsby-remark-copy-linked-files`
         ]
+      }
+    },
+    {
+      resolve: `gatsby-transformer-code`,
+      options: {
+        name: `jinaga`,
+        extensions: [ 'ts' ]
       }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
