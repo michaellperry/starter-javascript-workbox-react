@@ -10,7 +10,7 @@ It returns the fact that was just created.
 ```typescript
 fact<T>(
     prototype: T
-    ): Promise<T>;
+): Promise<T>;
 ```
 
 ## Parameters
@@ -36,7 +36,7 @@ const tagReact = await j.fact({
 });
 ```
 
-[Try it](/examples/single-fact)
+[Try it](/examples/fact/single-fact)
 
 Create a fact with a single predecessor.
 
@@ -48,7 +48,7 @@ const post = await j.fact({
 });
 ```
 
-[Try it](/examples/single-predecessor)
+[Try it](/examples/fact/single-predecessor)
 
 Create a fact with multiple predecessors.
 
@@ -60,7 +60,7 @@ await j.fact({
 });
 ```
 
-[Try it](/examples/multiple-predecessors)
+[Try it](/examples/fact/multiple-predecessors)
 
 You can specify the predecessors inline.
 The predecessor facts will be persisted first.
@@ -87,4 +87,4 @@ await j.fact({
 });
 ```
 
-[Try it](/examples/all-at-once)
+[Try it](/examples/fact/all-at-once)

@@ -7,7 +7,7 @@ Register an callback to receive error messages.
 ```typescript
 onError(
     handler: (message: string) => void
-    ): void;
+): void;
 ```
 
 ## Parameters

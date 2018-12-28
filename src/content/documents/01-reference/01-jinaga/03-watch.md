@@ -12,7 +12,7 @@ watch<T, U, V>(
     preposition: Preposition<T, U>,
     resultAdded: (result: U) => V,
     resultRemoved: (model: V) => void
-    ): Watch<U, V>;
+): Watch<U, V>;
 ```
 
 ## Parameters

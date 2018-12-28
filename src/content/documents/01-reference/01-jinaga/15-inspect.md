@@ -6,7 +6,7 @@ Open an inspector in the browser's console window to navigate through facts in m
 
 ```typescript
 inspect(
-    ): {};
+): {};
 ```
 
 ## Returns

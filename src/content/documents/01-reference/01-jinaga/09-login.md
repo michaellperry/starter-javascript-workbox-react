@@ -7,11 +7,10 @@ This method is only valid in the browser.
 
 ```typescript
 login<U>(
-    ): Promise<{
-        userFact: U;
-        profile: Profile
-    }>;
-}
+): Promise<{
+    userFact: U;
+    profile: Profile
+}>;
 ```
 
 ## Parameters

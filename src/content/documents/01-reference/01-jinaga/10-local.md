@@ -8,7 +8,7 @@ The local machine's identity is not shared with remote machines.
 
 ```typescript
 local<D>(
-    ): Promise<D>;
+): Promise<D>;
 ```
 
 ## Parameters

@@ -8,7 +8,7 @@ Use [graphviz.org](https://graphviz.org) to visualize the diagram.
 
 ```typescript
 graphviz(
-    ): string;
+): string;
 ```
 
 ## Returns

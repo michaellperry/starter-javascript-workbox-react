@@ -7,7 +7,7 @@ Used in a template function to create a condition that is true if *no* matching 
 ```typescript
 static notExists<T>(
     template: T
-    ): Condition<T>;
+): Condition<T>;
 ```
 
 ## Parameters

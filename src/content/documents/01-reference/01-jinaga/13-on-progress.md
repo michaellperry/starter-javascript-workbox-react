@@ -8,7 +8,7 @@ A count greater than 0 is an indication to the user that the application is savi
 ```typescript
 onProgress(
     handler: (queueCount: number) => void
-    ): void;
+): void;
 ```
 
 ## Parameters

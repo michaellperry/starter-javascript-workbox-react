@@ -7,7 +7,7 @@ Register a callback to receive loading state notifications.
 ```typescript
 onLoading(
     handler: (loading: boolean) => void
-    ): void;
+): void;
 ```
 
 ## Parameters

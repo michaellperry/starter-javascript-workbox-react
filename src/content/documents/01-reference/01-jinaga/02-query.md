@@ -8,7 +8,7 @@ Execute a query for facts matching a template.
 query<T, U>(
     start: T,
     preposition: Preposition<T, U>
-    ): Promise<U[]>;
+): Promise<U[]>;
 ```
 
 ## Parameters
@@ -41,6 +41,8 @@ function postsByAuthor(a) {
 
 const posts = await j.query(person, j.for(postsByAuthor));
 ```
+
+[Try it](/examples/query/successors)
 
 Query for successors of successors.
 
@@ -84,6 +86,8 @@ const tags = await j.query(person, j
 // }]
 ```
 
+[Try it](/examples/query/successors-of-successors)
+
 The above can be combined into a single template function if desired.
 
 ```typescript
@@ -99,6 +103,8 @@ function tagsForPostsByAuthor(a) {
 
 const tags = await j.query(person, j.for(tagsForPostsByAuthor));
 ```
+
+[Try it](/examples/query/combined-successors-of-successors)
 
 When a fact has many predecessors, use an array within the template function.
 
@@ -119,6 +125,8 @@ function postTagsByTag(t) {
 
 const postTags = await j.query(tag, j.for(postTagsByTag));
 ```
+
+[Try it](/examples/query/many-predecessors)
 
 Query for predecessor of successors.
 
@@ -141,3 +149,5 @@ const posts = await j.query(tag, j
     .for(postTagsByTag)
     .then(postForPostTag));
 ```
+
+[Try it](/examples/query/predecessors-of-successors)

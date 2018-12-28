@@ -60,6 +60,7 @@ class ExamplePage extends Component {
                 `;
                 const { diagnostics, outputText } = ts.transpileModule(body, {
                     compilerOptions: {
+                        sourceMap: false,
                         module: ts.ModuleKind.None
                     }
                 });

@@ -7,7 +7,7 @@ Prepare a template function to be used in [`query`](../query/) or [`watch`](../w
 ```typescript
 static for<T, U>(
     specification: (target: T) => Specification<U>
-    ): Preposition<T, U>;
+): Preposition<T, U>;
 ```
 
 ## Parameters

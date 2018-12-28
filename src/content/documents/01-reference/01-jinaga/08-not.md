@@ -5,7 +5,7 @@ title: not
 ```typescript
 static not<T, U>(
     condition: (target: T) => Condition<U>
-    ): (target: T) => Condition<U>;
+): (target: T) => Condition<U>;
 ```
 
 ## Parameters
