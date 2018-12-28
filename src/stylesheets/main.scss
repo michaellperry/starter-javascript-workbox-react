@@ -240,6 +240,11 @@ ol.toc {
     svg {
         width: 100%;
     }
+
+    .gatsby-highlight + p a {
+        position: relative;
+        top: -20px;
+    }
 }
 
 ol.breadcrumb {
