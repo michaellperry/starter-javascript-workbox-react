@@ -271,7 +271,7 @@ ol.child-links {
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 0px 1fr;
     grid-template-rows: 66.67px 50px 0.7fr 0.3fr;
 
     .index-head-container {
@@ -287,20 +287,26 @@ ol.child-links {
         .command-button {
             height: 40px;
             width: 100px;
-            margin: 5px 0;
+            margin: 5px;
         }
     }
 
-    #container {
+    .editor {
         grid-row: 3;
         grid-column: 2;
+        margin: 5px;
         overflow: hidden;
         border:1px solid #ccc;
+
+        #container {
+            height: 100%;
+        }
     }
 
     .output {
         grid-row: 4;
         grid-column: 2;
+        margin: 5px;
         overflow: scroll;
         background: #eee;
     }
