@@ -92,3 +92,17 @@ await j.fact({
 ```
 
 [Try it](/examples/fact/all-at-once)
+
+You may be feeling that Jinaga facts are upside down.
+Typically, a JSON object contains its children.
+But a Jinaga fact contains its parent.
+What's going on with that?
+
+This all stems from the fact that Jinaga facts are *immutable*.
+You cannot change a fact.
+If a fact contained an array of children, then you would never be able to add another child.
+And so the relationship has to be flipped.
+A child knows its parent, because that parent relationship never changes.
+
+To find all of the children of a fact, you need to write a [query](../query/).
+By the way, we call these children *successors*, as you will soon see.
