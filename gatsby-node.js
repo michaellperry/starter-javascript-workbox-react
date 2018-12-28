@@ -104,10 +104,18 @@ async function loadExamplePages(graphql) {
         throw result.errors;
     }
     return result.data.allFile.edges.map(edge => ({
-        path: `examples/${edge.node.relativePath}`,
+        path: `/examples/${trimts(edge.node.relativePath)}`,
         component: exampleTemplate,
         context: {
             slug: edge.node.relativePath
         }
     }));
+}
+
+function trimts(path) {
+    if (path && path.length > 3 && path.substring(path.length - 3) === '.ts') {
+        return path.substring(0, path.length - 3);
+    }
+
+    return path;
 }

@@ -36,6 +36,8 @@ const tagReact = await j.fact({
 });
 ```
 
+[Try it](/examples/single-fact)
+
 Create a fact with a single predecessor.
 
 ```typescript
