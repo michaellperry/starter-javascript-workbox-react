@@ -4,7 +4,7 @@
     function postTagsByTag(t) {
         return j.match({
             type: 'Blog.Post.Tags',
-            tags: [t]
+            tags: [t]               // Using an array here.
         });
     }
     

@@ -25,6 +25,7 @@ class ExamplePage extends Component {
                 </div>
                 <div className="command-bar">
                     <input type="button" className="command-button" value="Run" onClick={() => { this.runCode(); }} />
+                    <input type="button" className="command-button right" value="Back" onClick={() => { window.history.back(); }} />
                 </div>
                 <div className="editor">
                     <MonacoEditor ref={this.editor} key="MonacoEditor"

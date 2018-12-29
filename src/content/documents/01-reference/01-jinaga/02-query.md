@@ -52,6 +52,7 @@ const posts = await j.query(person, j.for(postsByAuthor));
 [Try it](/examples/query/successors)
 
 Query for successors of successors.
+You can find all the grandchildren of a fact by joining two queries together using `then`.
 
 ```dot
 digraph Blog {
@@ -72,25 +73,6 @@ function tagsForPost(p) {
 const tags = await j.query(person, j
     .for(postsByAuthor)
     .then(tagsForPost));
-// Returns array of Blog.Post.Tags facts. For example:
-// [{
-//     type: 'Blog.Post.Tags',
-//     post: {
-//         type: 'Blog.Post',
-//         created: '2018-12-23T22:46:02.487Z',
-//         author: { ... }
-//     },
-//     tags: [{
-//         type: 'Blog.Tag',
-//         name: 'React'
-//     }, {
-//         type: 'Blog.Tag',
-//         name: 'CSS'
-//     }, {
-//         type: 'Blog.Tag',
-//         name: 'Micro-Frontends'
-//     }]
-// }]
 ```
 
 [Try it](/examples/query/successors-of-successors)
@@ -114,6 +96,7 @@ const tags = await j.query(person, j.for(tagsForPostsByAuthor));
 [Try it](/examples/query/combined-successors-of-successors)
 
 When a fact has many predecessors, use an array within the template function.
+Even though the template lists only one predecessor, the query will match if that predecessor is anywhere in the array.
 
 ```dot
 digraph Blog {
@@ -136,6 +119,8 @@ const postTags = await j.query(tag, j.for(postTagsByTag));
 [Try it](/examples/query/many-predecessors)
 
 Query for predecessor of successors.
+In other words, go down to children, and then back up to a different parent.
+Kind of like a step-mother query.
 
 ```dot
 digraph Blog {
@@ -144,6 +129,9 @@ digraph Blog {
     "Blog.Post.Tags" -> "Blog.Post" [label=" post"]
 }
 ```
+
+You need to explicitly state that the successor `has` a field.
+Once you do, you can use that field within the match.
 
 ```typescript
 function postForPostTag(pt) {

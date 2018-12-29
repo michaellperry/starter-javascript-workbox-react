@@ -1,6 +1,8 @@
 (async () => {
     const person = await populateData();
 
+    // This one template function matches two levels deep.
+    // This makes it match grandchildren.
     function tagsForPostsByAuthor(a) {
         return j.match({
             type: 'Blog.Post.Tags',

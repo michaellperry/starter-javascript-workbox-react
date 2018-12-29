@@ -288,6 +288,10 @@ ol.child-links {
             height: 40px;
             width: 100px;
             margin: 5px;
+
+            &.right {
+                float: right;
+            }
         }
     }
 
@@ -307,6 +311,8 @@ ol.child-links {
         grid-row: 4;
         grid-column: 2;
         margin: 5px;
+        padding: 5px;
+        font-size: 1.5em;
         overflow: scroll;
         background: #eee;
     }

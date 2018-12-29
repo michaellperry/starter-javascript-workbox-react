@@ -1,1 +1,0 @@
-import { Jinaga } from "jinaga"; declare global { const j: Jinaga; } export {};

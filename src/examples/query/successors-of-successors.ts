@@ -1,6 +1,7 @@
 (async () => {
     const person = await populateData();
 
+    // First look for posts authored by the user.
     function postsByAuthor(a) {
         return j.match({
             type: 'Blog.Post',
@@ -8,6 +9,7 @@
         });
     }
 
+    // Then look for tags attached to the post.
     function tagsForPost(p) {
         return j.match({
             type: 'Blog.Post.Tags',
@@ -15,6 +17,7 @@
         });
     }
 
+    // Use `then` to join the two queries.
     const tags = await j.query(person, j
         .for(postsByAuthor)
         .then(tagsForPost));

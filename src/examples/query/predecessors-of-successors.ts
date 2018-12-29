@@ -1,6 +1,7 @@
 (async () => {
     await populateData();
 
+    // First go down to Post.Tags
     function postTagsByTag(t) {
         return j.match({
             type: 'Blog.Post.Tags',
@@ -8,16 +9,17 @@
         });
     }
 
+    // Then back up to Post
     function postForPostTag(pt) {
-        pt.has('post');
+        pt.has('post');             // A Post.Tag has a field called post...
 
-        return j.match(pt.post);
+        return j.match(pt.post);    // which we can match
     }
 
     const tag = createTag('REST');
     const posts = await j.query(tag, j
         .for(postTagsByTag)
-        .then(postForPostTag));
+        .then(postForPostTag));     // Join the templates with then
 
     console.log(JSON.stringify(posts, null, 2));
 })();
