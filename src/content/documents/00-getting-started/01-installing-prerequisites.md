@@ -14,21 +14,3 @@ If you are installing Node on Ubuntu, run these commands:
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
-
-## Creating your First Application
-
-Create a new Node application.
-
-```bash
-mkdir myapplication
-cd myapplication
-npm init
-```
-
-Then install the `jinaga` package.
-
-```bash
-npm install --save jinaga
-```
-
-Continue with the [Getting Started](../getting-started) instructions.
