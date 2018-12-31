@@ -29,10 +29,13 @@ class ExamplePage extends Component {
                 </div>
                 <div className="editor">
                     <MonacoEditor ref={this.editor} key="MonacoEditor"
-                        libraries={sourceFiles.edges.map(edge => ({
-                            path: edge.node.relativePath,
-                            content: edge.node.childRawCode.content
-                        }))}
+                        libraries={sourceFiles.edges
+                            .filter(edge => edge.node.childRawCode)
+                            .map(edge => ({
+                                path: edge.node.relativePath,
+                                content: edge.node.childRawCode.content
+                            }))
+                        }
                         content={example.childRawCode.content} />
                 </div>
                 <pre className="output">{this.state.output}</pre>
