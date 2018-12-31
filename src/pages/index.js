@@ -14,7 +14,7 @@ const IndexPage = () => (
         <p>Resilient, reliable, and connected web applications.</p>
       </div>
     }>
-    <SEO title="Home" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
+    <SEO title="Jinaga" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
     <h2>Exchange Immutable Facts</h2>
     <p>
       JSON objects are durably stored on the back end,
