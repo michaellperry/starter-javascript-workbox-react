@@ -69,3 +69,26 @@ export function findAncestors(nodes, predicate) {
     }
     return null;
 }
+
+export function findNext(nodes, predicate) {
+    for (let index = 0; index < nodes.length; index++) {
+        const node = nodes[index];
+        if (predicate(node)) {
+            if (index < nodes.length - 1) {
+                return nodes[index+1];
+            }
+            return true;
+        }
+        const next = findNext(node.children, predicate);
+        if (next) {
+            if (next === true) {
+                if (index < nodes.length - 1) {
+                    return nodes[index+1];
+                }
+                return true;
+            }
+            return next;
+        }
+    }
+    return null;
+}

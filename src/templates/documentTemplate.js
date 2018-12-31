@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Breadcrumb from "../outline/breadcrumb";
 import ChildLinks from "../outline/childLinks";
+import NextLink from "../outline/next-link";
 import TableOfContents from "../outline/tableOfContents";
 import { findNode, mapNodes, toTree } from "../outline/tree";
 
@@ -25,10 +26,15 @@ export default function Template({ data }) {
         <div
           dangerouslySetInnerHTML={{ __html: html }}
         />
-        { currentDocument.children.length > 0 && (
+        { currentDocument.children.length > 0 ? (
           <>
             <h2>See Also</h2>
             <ChildLinks className="child-links" children={currentDocument.children} />
+          </>
+        ) : (
+          <>
+            <h2>Next</h2>
+            <NextLink chapters={chapters} slug={slug} />
           </>
         )}
       </div>
