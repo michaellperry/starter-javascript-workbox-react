@@ -33,8 +33,8 @@ export default function Template({ data }) {
           </>
         ) : (
           <>
-            <h2>Next</h2>
-            <NextLink chapters={chapters} slug={slug} />
+            <h2>Continue With</h2>
+            <p><NextLink chapters={chapters} slug={slug} /></p>
           </>
         )}
       </div>

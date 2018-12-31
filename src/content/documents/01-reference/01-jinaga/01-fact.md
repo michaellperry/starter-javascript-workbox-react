@@ -104,5 +104,5 @@ If a fact contained an array of children, then you would never be able to add an
 And so the relationship has to be flipped.
 A child knows its parent, because that parent relationship never changes.
 
-To find all of the children of a fact, you need to write a [query](../query/).
+To find all of the children of a fact, you need to write a query.
 By the way, we call these children *successors*, as you will soon see.
