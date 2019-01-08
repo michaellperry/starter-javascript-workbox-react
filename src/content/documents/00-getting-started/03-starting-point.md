@@ -100,6 +100,23 @@ function configureJinaga(app) {
 module.exports = { configureJinaga };
 ```
 
+## index.html
+
+```html
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <p>Welcome!</p>
+
+        <script src="/scripts/main.js"></script>
+    </body>
+
+</html>
+```
+
 ## src/index.js
 
 ```javascript
