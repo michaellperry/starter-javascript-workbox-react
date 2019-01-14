@@ -1,13 +1,31 @@
 ---
-title: Starting Point
+title: Starter Kits
 ---
 
-If you follow the instructions in [Creating an Application](../creating-an-application/), you will end up in this state.
+If you follow the instructions in [Creating an Application](../creating-an-application/), you will end up with a working application.
 Those steps are designed so that you can see each piece working one at a time.
-If you want to skip ahead, you can copy the files listed here.
+If you want to skip ahead, you can deploy one of the following starter kits.
 But if something goes wrong, it might be harder to diagnose.
 
-## package.json
+First, pick your language.
+Then export the repository.
+If you have Subversion installed, you can do that in a single line.
+Otherwise, you will need to download it via the GitHub repository page.
+
+## TypeScript
+
+```bash
+svn export https://github.com/jinaga/starter.git/trunk myapplication
+```
+
+[Download from GitHub](https://github.com/jinaga/starter)
+
+## JavaScript
+
+Repository coming soon.
+For now, just copy the following files.
+
+### package.json
 
 ```json
 {
@@ -39,7 +57,7 @@ But if something goes wrong, it might be harder to diagnose.
 }
 ```
 
-## index.js
+### index.js
 
 ```javascript
 const express = require('express');
@@ -63,7 +81,7 @@ server.listen(app.get("port"), () => {
 });
 ```
 
-## routes.js
+### routes.js
 
 ```javascript
 const path = require('path');
@@ -81,7 +99,7 @@ function configureRoutes(app) {
 module.exports = { configureRoutes };
 ```
 
-## jinaga.js
+### jinaga.js
 
 ```javascript
 const { JinagaServer } = require('jinaga');
@@ -100,7 +118,7 @@ function configureJinaga(app) {
 module.exports = { configureJinaga };
 ```
 
-## index.html
+### index.html
 
 ```html
 <html>
@@ -117,7 +135,7 @@ module.exports = { configureJinaga };
 </html>
 ```
 
-## src/index.js
+### src/index.js
 
 ```javascript
 import { JinagaBrowser } from "jinaga/dist/jinaga";
