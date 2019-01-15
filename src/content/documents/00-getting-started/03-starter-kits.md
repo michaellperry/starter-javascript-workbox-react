@@ -15,10 +15,10 @@ Otherwise, you will need to download it via the GitHub repository page.
 ## TypeScript
 
 ```bash
-svn export https://github.com/jinaga/starter.git/trunk myapplication
+svn export https://github.com/jinaga/starter-typescript.git/trunk myapplication
 ```
 
-[Download from GitHub](https://github.com/jinaga/starter)
+[Download from GitHub](https://github.com/jinaga/starter-typescript)
 
 ## JavaScript
 
