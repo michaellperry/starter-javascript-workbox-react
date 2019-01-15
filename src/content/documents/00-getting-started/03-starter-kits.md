@@ -146,17 +146,17 @@ const j = JinagaBrowser.create({
 
 function visitsInDomain(d) {
     return j.match({
-        type: 'Visit',
+        type: 'MyApplication.Visit',
         domain: d
     });
 }
 
 const domain = {
-    type: 'Application',
-    name: 'My Application'
+    type: 'MyApplication.Domain',
+    name: 'myapplication'
 };
 j.fact({
-    type: 'Visit',
+    type: 'MyApplication.Visit',
     time: new Date(),
     domain
 }).then(visit => {
