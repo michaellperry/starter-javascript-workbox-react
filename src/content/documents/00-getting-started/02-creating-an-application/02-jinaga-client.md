@@ -22,7 +22,7 @@ function visitsInDomain(d) {
 
 const domain = {
     type: 'MyApplication.Domain',
-    name: 'myapplication'
+    identifier: 'myapplication'
 };
 j.fact({
     type: 'MyApplication.Visit',
