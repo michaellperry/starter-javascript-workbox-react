@@ -5,7 +5,14 @@ title: "PostgreSQL"
 Jinaga persists facts on the server in a PostgreSQL database.
 Create a new database instance for the application.
 
-Log on to pgAdmin as the `postgres` user. Create a new database named for your application.
+Log on to your PostgreSQL database as the `postgres` user.
+You can do this with the following `psql` command.
+
+```bash
+psql -h localhost postgres postgres
+```
+
+Create a new database named for your application.
 
 ```SQL
 CREATE DATABASE myapplication;
@@ -27,9 +34,17 @@ CREATE USER dev WITH
 
 This user will be granted limited permissions to the application database. It will only be able to `SELECT` and `INSERT` particular tables.
 
+Log off of the session (Ctrl+D) so that you can run the setup script.
 Switch to the application database and run the script in `node_modules/jinaga/setup.sql`.
 
-Then modify the `JinagaServer` line in `jinaga.js` so that it specifies the PostgreSQL connection string.
+```bash
+psql -h localhost -f node_modules/jinaga/setup.sql postgres myapplication
+```
+
+You will need to install the NPM package in order to retrieve this file.
+
+Once you have created the PostgreSQL database, configure the application to use it.
+Modify the `JinagaServer` line in `jinaga-config.js` so that it specifies the PostgreSQL connection string.
 
 ```javascript
     const pgConnection = process.env.JINAGA_POSTGRESQL ||
@@ -41,5 +56,5 @@ Then modify the `JinagaServer` line in `jinaga.js` so that it specifies the Post
 ```
 
 Start the application, and it will start counting from 1.
-But if you stop and restart it, you will see that it continues from there.
+If you stop and restart it, you will see that it continues from there.
 The server is now persisting your facts.
