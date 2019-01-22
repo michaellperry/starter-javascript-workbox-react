@@ -38,7 +38,7 @@ Log off of the session (Ctrl+D) so that you can run the setup script.
 Switch to the application database and run the script in `node_modules/jinaga/setup.sql`.
 
 ```bash
-psql -h localhost -f node_modules/jinaga/setup.sql postgres myapplication
+psql -h localhost -f node_modules/jinaga/setup.sql -U postgres myapplication
 ```
 
 You will need to install the NPM package in order to retrieve this file.
