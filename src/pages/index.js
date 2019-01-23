@@ -22,8 +22,8 @@ const IndexPage = () => (
       The view is automatically updated as new facts
       arrive, even from other users.
     </p>
-    <Link className="cta" style={{ border: 'none' }} to={'/documents/getting-started/'}>
-      <div className="button-container">Get Started</div>
+    <Link className="cta" style={{ border: 'none' }} to={'/examples/intro/overview'}>
+      <div className="button-container">Try it in your browser</div>
     </Link>
     <StaticQuery
       query={graphql`

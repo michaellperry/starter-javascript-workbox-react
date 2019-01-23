@@ -243,7 +243,20 @@ ol.toc {
 
     .gatsby-highlight + p a {
         position: relative;
-        top: -20px;
+        top: -10px;
+        padding: 10px 20px;
+
+        border: 1px solid #393782;
+        border-radius: 3px;
+        font-size: 2rem;
+        color: #393782;
+        display: inline-block;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: white;
+            background: rgb(57, 55, 130);
+        }
     }
 }
 
