@@ -2,6 +2,8 @@
 title: not
 ---
 
+Inverts a condition defined using [`exists`](../exists/) or [`notExists`](./not-exists).
+
 ```typescript
 static not<T, U>(
     condition: (target: T) => Condition<U>
@@ -10,7 +12,7 @@ static not<T, U>(
 
 ## Parameters
 
-* **condition** - A template function using [`exists`](../exists/) or [`notExists`](./not-exists) to invert
+* **condition** - A template function using exists or notExists to invert
 
 ## Returns
 

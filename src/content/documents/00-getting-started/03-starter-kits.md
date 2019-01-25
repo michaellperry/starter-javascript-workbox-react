@@ -8,7 +8,8 @@ The starter kits provide a more complete developer experience.
 But if something goes wrong, they might be harder to diagnose.
 
 First, pick your language.
-Then export the repository.
+Then, pick your front-end framework.
+Finally, export the repository.
 If you have Subversion installed, you can do that in a single line.
 Otherwise, you will need to download it via the GitHub repository page.
 
@@ -22,9 +23,16 @@ svn export https://github.com/jinaga/starter-typescript.git/trunk myapplication
 
 ## JavaScript
 
-
 ```bash
 svn export https://github.com/jinaga/starter-javascript.git/trunk myapplication
 ```
 
 [Download from GitHub](https://github.com/jinaga/starter-javascript)
+
+### JavaScript with React
+
+```bash
+svn export https://github.com/jinaga/starter-javascript-react.git/trunk myapplication
+```
+
+[Download from GitHub](https://github.com/jinaga/starter-javascript-react)
