@@ -21,6 +21,14 @@ svn export https://github.com/jinaga/starter-typescript.git/trunk myapplication
 
 [Download from GitHub](https://github.com/jinaga/starter-typescript)
 
+### TypeScript with React
+
+```bash
+svn export https://github.com/jinaga/starter-typescript-react.git/trunk myapplication
+```
+
+[Download from GitHub](https://github.com/jinaga/starter-typescript-react)
+
 ## JavaScript
 
 ```bash
