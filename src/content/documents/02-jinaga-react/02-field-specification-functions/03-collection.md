@@ -13,7 +13,7 @@ It executes a query to get all of the child facts, and uses them as the starting
 
 Give collections a capitalized name so that you can use them as regular React components within your render function.
 
-```javascript
+```jsx
 const channelMapping = channelSpec(({ Messages }) => (
     <Messages />
 ));

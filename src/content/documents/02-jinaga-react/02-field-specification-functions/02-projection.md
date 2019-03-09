@@ -9,16 +9,14 @@ That mapping will start from the same fact as the current specification.
 
 ```javascript
 {
-    UserView: projection({
-        name: property(j.for(nameOfUser), n => n.value, "<user>")
-    }
+    UserView: projection(userViewMapping)
 }
 ```
 
 Give projections a capitalized name so that you can use them as regular React components within your render function.
 
-```javascript
-const userMapping = userSpec(({ UserView }) => (
+```jsx
+const pageMapping = userSpec(({ UserView }) => (
     <UserView />
 ));
 ```
