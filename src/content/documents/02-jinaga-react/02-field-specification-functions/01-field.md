@@ -6,17 +6,23 @@ The simplest field specification function provides an immutable value based on t
 Use it to copy a field directly from the fact into state.
 
 ```javascript
-field('text', m => m.text)
+{
+    text: field(m => m.text)
+}
 ```
 
-Or to compute the hash to use as a key.
+Or to compute the hash.
 
 ```javascript
-field('key', m => j.hash(m))
+{
+    hash: field(m => j.hash(m))
+}
 ```
 
 Or to store the fact itself.
 
 ```javascript
-field('fact', m => m)
+{
+    fact: field(m => m)
+}
 ```

@@ -6,9 +6,11 @@ If you want the user to be able to edit the property, you will need to capture m
 Use the `mutable` specification function to gather that information.
 
 ```javascript
-mutable('name', j.for(nameOfUser), userNames => userNames
-    .map(n => n.value)
-    .join(', '))
+{
+    name: mutable(j.for(nameOfUser), userNames => userNames
+        .map(n => n.value)
+        .join(", "))
+}
 ```
 
 Rather than selecting just a single value, the `mutable` specification function takes a conflict resolver.
@@ -26,9 +28,12 @@ Since the order of the candidates is not guaranteed, this strategy relies upon a
 Dates have been converted to strings, because facts are JSON objects.
 
 ```javascript
-mutable('name', j.for(nameOfUser), userNames => userNames
-    .reduce((a,b) => a.createdAt > b.createdAt ? a : b, { createdAt: '', value: '' } )
-    .value)
+{
+    name: mutable(j.for(nameOfUser), userNames => userNames
+        .reduce((a,b) => a.createdAt > b.createdAt ? a : b,
+            { createdAt: "", value: "" } )
+        .value)
+}
 ```
 
 The state field has a `value` field that contains the resolved value.
@@ -40,15 +45,15 @@ When they save, use the `prior` function to turn those candidates into an array.
 Then create a new fact if the value has changed or a conflict has been resolved.
 
 ```javascript
-const name = state.name;
-let value = name.value;
+const name = this.props.name;
+let value = this.props.value;
 
 // Edit the value
 
 const priorNames = prior(name);
 if (value !== name.value || priorNames.length !== 1) {
     await j.fact({
-        type: 'User.Name',
+        type: "User.Name",
         user,
         value,
         prior: priorNames

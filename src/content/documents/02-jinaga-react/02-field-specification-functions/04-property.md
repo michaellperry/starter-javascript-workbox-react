@@ -3,7 +3,7 @@ title: "property"
 ---
 
 A Jinaga property is a pattern for simulating changes to a value using immutable facts.
-The `property` function translates this pattern into a state field that can change.
+The `property` function translates this pattern into a prop that can change.
 
 A property fact has a parent entity, a value, and an array of prior facts.
 
@@ -45,8 +45,11 @@ function nameIsCurrent(n) {
 }
 ```
 
-The `property` specification function will assign the value of the most recent fact to a state field.
+The `property` specification function will assign the value of the most recent fact to a prop.
+The last parameter is the default value, which is used if the query returns no results.
 
 ```javascript
-property('name', j.for(nameOfUser), n => n.value)
+{
+    name: property(j.for(nameOfUser), n => n.value, "<user>")
+}
 ```
