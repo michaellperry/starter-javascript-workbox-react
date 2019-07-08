@@ -40,7 +40,7 @@
   "scripts": {
     "build": "if [ -d public ]; then rm -rf public; fi && if [ -d .cache ]; then rm -rf .cache; fi && gatsby build",
     "dev": "gatsby develop",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },

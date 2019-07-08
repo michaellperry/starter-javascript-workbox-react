@@ -10,13 +10,15 @@ But if something goes wrong, they might be harder to diagnose.
 First, pick your language.
 Then, pick your front-end framework.
 Finally, export the repository.
-If you have Subversion installed, you can do that in a single line.
+If you have Git installed, you can do that in three lines.
 Otherwise, you will need to download it via the GitHub repository page.
 
 ## TypeScript
 
 ```bash
-svn export https://github.com/jinaga/starter-typescript.git/trunk myapplication
+git clone --depth 1 https://github.com/jinaga/starter-typescript.git myapplication
+cd myapplication
+rm -rf .git
 ```
 
 [Download from GitHub](https://github.com/jinaga/starter-typescript)
@@ -24,7 +26,9 @@ svn export https://github.com/jinaga/starter-typescript.git/trunk myapplication
 ### TypeScript with React
 
 ```bash
-svn export https://github.com/jinaga/starter-typescript-react.git/trunk myapplication
+git clone --depth 1 https://github.com/jinaga/starter-typescript-react.git myapplication
+cd myapplication
+rm -rf .git
 ```
 
 [Download from GitHub](https://github.com/jinaga/starter-typescript-react)
@@ -32,7 +36,9 @@ svn export https://github.com/jinaga/starter-typescript-react.git/trunk myapplic
 ## JavaScript
 
 ```bash
-svn export https://github.com/jinaga/starter-javascript.git/trunk myapplication
+git clone --depth 1 https://github.com/jinaga/starter-javascript.git myapplication
+cd myapplication
+rm -rf .git
 ```
 
 [Download from GitHub](https://github.com/jinaga/starter-javascript)
@@ -40,7 +46,9 @@ svn export https://github.com/jinaga/starter-javascript.git/trunk myapplication
 ### JavaScript with React
 
 ```bash
-svn export https://github.com/jinaga/starter-javascript-react.git/trunk myapplication
+git clone --depth 1 https://github.com/jinaga/starter-javascript-react.git myapplication
+cd myapplication
+rm -rf .git
 ```
 
 [Download from GitHub](https://github.com/jinaga/starter-javascript-react)
