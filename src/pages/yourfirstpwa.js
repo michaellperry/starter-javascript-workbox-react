@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 
 const YourFirstPwaPage = () => (
   <Layout className="body-container">
-    <SEO title="About" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
+    <SEO title="Your First PWA" keywords={[`jinaga`, `node`, `typescript`, `javascript`]} />
     <StaticQuery
       query={graphql`
         query YourFirstPwaQuery {

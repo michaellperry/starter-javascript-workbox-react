@@ -62,6 +62,30 @@ npm start
 
 The application will start at http://localhost:8000.
 
+### Manifest and Offline Plugins
+
+That's really cool and all, but what about Progressive Web Apps?
+When Gatsby runs as a PWA, your visitors can take your content offline.
+But you need to set that up.
+Fortunately, there's a plugin (or two) for that.
+[Full instructions](https://www.gatsbyjs.org/docs/add-offline-support-with-a-service-worker/) are in the Gatsby documentation, but here's the gist of it.
+
+The two plugins that make a Gatsby site a PWA are `gatsby-plugin-manifest` and `gatsby-plugin-offline`.
+Look for these declared in `gatsby-config.js`.
+They set up a Web Manifest, and install a Service Worker, respectively.
+But they only work in a production build.
+
+```bash
+npm run build
+npx gatsby serve
+```
+
+This will start the server at http://localhost:9000/.
+Navigate to that page, and click the ellipses in the upper-right corner of the Chrome window.
+Then click "Install Gatsby Starter Blog".
+
+![Click the ellipses, then click Install Gatsby Starter Blog](./yourfirstpwa/install.jpg)
+
 ## Workbox
 
 ## Jinaga
