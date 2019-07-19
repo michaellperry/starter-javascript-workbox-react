@@ -1,0 +1,18 @@
+.refresh-bar {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+
+  span {
+    margin: 10px;
+    vertical-align: middle;
+  }
+  button {
+    margin: 10px;
+    height: 2.3em;
+  }
+
+  color: white;
+  background-color: #365775;
+}
