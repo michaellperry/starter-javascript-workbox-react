@@ -9,7 +9,7 @@ Find out more about [Webpack](https://webpack.js.org/), [React](https://reactjs.
 The easiest way to use this starter kit is to clone it and delete the Git associations.
 
 ```bash
-git clone https://github.com/jinaga/starter-javascript-workbox-react.git myapplication
+git clone https://github.com/michaellperry/starter-javascript-workbox-react.git myapplication
 cd myapplication
 rm -rf .git
 ```
