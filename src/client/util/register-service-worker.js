@@ -25,14 +25,12 @@ function promptUserToRefresh(promptForRefresh) {
 
 export function registerServiceWorker(promptForRefresh) {
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      (async () => {
-        const registration = await navigator.serviceWorker.register('/service-worker.js');
-        console.log(`Registered service worker with scope ${registration.scope}.`);
+    (async () => {
+      const registration = await navigator.serviceWorker.register('/service-worker.js');
+      console.log(`Registered service worker with scope ${registration.scope}.`);
 
-        listenForWaitingServiceWorker(registration, promptUserToRefresh(promptForRefresh));
-      })().catch(err => console.log(`Service worker registration failed: ${err}`));
-    });
+      listenForWaitingServiceWorker(registration, promptUserToRefresh(promptForRefresh));
+    })().catch(err => console.log(`Service worker registration failed: ${err}`));
 
     // reload once when the new Service Worker starts activating
     let refreshing = false;
