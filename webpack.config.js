@@ -56,7 +56,7 @@ function client() {
     })).concat([
       new WorkboxPlugin.GenerateSW({
         swDest: 'scripts/service-worker.js',
-        importsDirectory: 'scripts'
+        inlineWorkboxRuntime: true
       }),
       new CopyWebpackPlugin([
         {
@@ -78,48 +78,50 @@ function client() {
   };
 }
 
+const server = {
+  // Input
+  entry: './src/server/server.js',
+  resolve: {
+    extensions: ['.js']
+  },
+  
+  // Processing
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: [
+          path.resolve(__dirname, 'src/server')
+        ],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        ],
+        exclude: /node-modules/
+      }
+    ]
+  },
+  
+  // Output
+  mode: 'production',
+  target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  devtool: 'source-map',
+  output: {
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  externals: [nodeExternals()]
+};
+
 module.exports = [
   client(),
-  {
-    // Input
-    entry: './src/server/server.js',
-    resolve: {
-      extensions: ['.js']
-    },
-    
-    // Processing
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include: [
-            path.resolve(__dirname, 'src/server')
-          ],
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env']
-              }
-            }
-          ],
-          exclude: /node-modules/
-        }
-      ]
-    },
-    
-    // Output
-    mode: 'production',
-    target: 'node',
-    node: {
-      __dirname: false,
-      __filename: false
-    },
-    devtool: 'source-map',
-    output: {
-      filename: 'server.js',
-      path: path.resolve(__dirname, 'dist')
-    },
-    externals: [nodeExternals()]
-  }
+  server
 ];
